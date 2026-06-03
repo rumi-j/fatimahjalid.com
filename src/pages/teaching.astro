@@ -4,6 +4,10 @@ import PageIntro from "../components/PageIntro.astro";
 import { courseProjects, courses } from "../data/teaching";
 import { group } from "../data/group";
 import { site } from "../data/site";
+
+// Fill the last row so trailing empty grid cells don't show the divider colour.
+const courseColumns = 3;
+const courseFillers = (courseColumns - (courses.length % courseColumns)) % courseColumns;
 ---
 
 <BaseLayout
@@ -27,6 +31,9 @@ import { site } from "../data/site";
           <h3>{course.title}</h3>
           <p>{course.terms.join(" · ")}</p>
         </article>
+      ))}
+      {Array.from({ length: courseFillers }).map(() => (
+        <article class="course-card course-card-empty" aria-hidden="true"></article>
       ))}
     </div>
   </section>

@@ -16,13 +16,15 @@ import portrait from "../assets/fatima-jalid-portrait.jpg";
 
   <section class="section-shell about-split">
     <figure class="about-portrait portrait-frame">
-      <Picture
-        src={portrait}
-        formats={["avif", "webp"]}
-        widths={[360, 540, 820]}
-        sizes="(max-width: 760px) 80vw, 36vw"
-        alt="Portrait of Dr. Fatima Jalid"
-      />
+      <div class="portrait-media">
+        <Picture
+          src={portrait}
+          formats={["avif", "webp"]}
+          widths={[360, 540, 820]}
+          sizes="(max-width: 760px) 80vw, 34vw"
+          alt="Portrait of Dr. Fatima Jalid"
+        />
+      </div>
     </figure>
     <div class="prose">
       {about.narrative.map((paragraph) => <p>{paragraph}</p>)}

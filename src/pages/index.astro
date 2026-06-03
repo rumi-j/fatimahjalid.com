@@ -31,14 +31,16 @@ const recentNews = [...news].sort((a, b) => b.year - a.year).slice(0, 4);
       </div>
     </div>
     <figure class="portrait-frame">
-      <Picture
-        src={portrait}
-        formats={["avif", "webp"]}
-        widths={[420, 640, 900, 1002]}
-        sizes="(max-width: 760px) 90vw, 40vw"
-        alt="Portrait of Dr. Fatima Jalid"
-        loading="eager"
-      />
+      <div class="portrait-media">
+        <Picture
+          src={portrait}
+          formats={["avif", "webp"]}
+          widths={[420, 640, 900, 1002]}
+          sizes="(max-width: 760px) 88vw, 36vw"
+          alt="Portrait of Dr. Fatima Jalid"
+          loading="eager"
+        />
+      </div>
       <figcaption>
         <span>01</span>
         <p>Assistant Professor · NIT Srinagar</p>
