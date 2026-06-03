@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { blogPosts, books, hobbies } from "../data/personal";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="Personal | fatimahjalid"
+  description="Books, Iqbal, writing, photography, and the quieter interests of Dr. Fatima Jalid."
+>
+  <PageIntro
+    eyebrow="Personal"
+    title="A life beyond the lab."
+    intro="Research is only one form of attention. This is a small corner for words, books, walks, and the details that make a day feel fully inhabited."
+  />
+
+  <section class="iqbal-section">
+    <div class="section-shell">
+      <div class="section-heading narrow">
+        <p class="eyebrow">Iqbal</p>
+        <h2>Verses I return to.</h2>
+      </div>
+      <div class="iqbal-grid">
+        <article>
+          <p class="eyebrow">A favourite couplet · Phool</p>
+          <blockquote class="urdu" lang="ur" dir="rtl">
+            صنوبر باغ میں آزاد بھی ہے، پا بہ گل بھی ہے<br />
+            انہی پابندیوں میں حاصل آزادی کو تو کر لے
+          </blockquote>
+          <p class="roman">
+            Sanobar bagh mein azad bhi hai, pa-ba-gil bhi hai<br />
+            Inhi pabandiyon mein hasil-e-azadi ko tu kar le
+          </p>
+          <p>A reminder that freedom is not always the absence of constraint; sometimes it is something we learn to find within it.</p>
+          <a class="text-link" href="https://iqbalurdu.blogspot.com/2011/04/bang-e-dra-155-phool.html" target="_blank" rel="noreferrer">Read Phool <span>↗</span></a>
+        </article>
+        <article>
+          <p class="eyebrow">My absolute favourite poem</p>
+          <h3>Aik Arzoo <span lang="ur" dir="rtl">· ایک آرزو</span></h3>
+          <blockquote class="urdu" lang="ur" dir="rtl">
+            دنیا کی محفلوں سے اکتا گیا ہوں یا رب<br />
+            کیا لطف انجمن کا جب دل ہی بجھ گیا ہو
+          </blockquote>
+          <p class="roman">
+            Dunya ki mehfilon se ukta gaya hun ya Rab<br />
+            Kya lutf anjuman ka jab dil hi bujh gaya ho
+          </p>
+          <a class="text-link" href="https://iqbalurdu.blogspot.com/2011/03/bang-e-dra-19-aik-arzoo.html" target="_blank" rel="noreferrer">Read the complete poem <span>↗</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell reading-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Reading</p>
+      <h2>Books on my shelf.</h2>
+    </div>
+    <div class="book-grid">
+      {books.map((book, index) => (
+        <article class={`book-card ${book.tone}`}>
+          <span>{String(index + 1).padStart(2, "0")}</span>
+          <h3>{book.title}</h3>
+          <p>{book.author}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="writing-section">
+    <div class="section-shell">
+      <div class="writing-heading">
+        <div>
+          <p class="eyebrow">Writing</p>
+          <h2>From <em>Peace.</em></h2>
+        </div>
+        <a class="text-link" href={site.links.blog} target="_blank" rel="noreferrer">Visit my blog <span>↗</span></a>
+      </div>
+      <div class="writing-grid">
+        {blogPosts.map((post) => (
+          <article>
+            <span>{post.year}</span>
+            <h3>{post.title}</h3>
+            <p>{post.summary}</p>
+            <a class="text-link" href={post.url} target="_blank" rel="noreferrer">Read the post <span>↗</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell photography-section">
+    <div>
+      <p class="eyebrow">Photography</p>
+      <h2>Things worth noticing.</h2>
+      <p>Landscapes, light, and fragments from ordinary days. A gallery will grow here slowly.</p>
+    </div>
+    <div class="reserved-gallery" aria-label="Photography gallery coming soon">
+      <span>Gallery in progress</span>
+    </div>
+  </section>
+
+  <section class="section-shell hobbies-section">
+    <p class="eyebrow">Small rituals</p>
+    <div class="hobby-grid">
+      {hobbies.map((hobby) => (
+        <article>
+          <span>{hobby.number}</span>
+          <h3>{hobby.title}</h3>
+          <p>{hobby.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

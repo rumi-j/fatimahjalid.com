@@ -1,0 +1,87 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { researchAreas, sponsoredProject } from "../data/research";
+import { accomplishments, education, invitedTalks, memberships } from "../data/professional";
+
+const sortedAccomplishments = [...accomplishments].sort((a, b) => Number(b.year) - Number(a.year));
+---
+
+<BaseLayout
+  title="Research | Dr. Fatima Jalid"
+  description="Research themes, academic highlights, and invited talks from Dr. Fatima Jalid."
+>
+  <PageIntro
+    eyebrow="Research"
+    title="Mechanisms matter."
+    intro="I use microkinetic modelling, computational catalysis, and reaction engineering to understand what happens at catalytic surfaces - and how that understanding can guide more sustainable chemical pathways."
+  />
+
+  <section class="section-shell research-grid">
+    {researchAreas.map((area, index) => (
+      <article class:list={["research-card", index === 0 && "featured"]}>
+        <span class="card-number">{area.number}</span>
+        <p class="eyebrow">{area.label}</p>
+        <h2>{area.title}</h2>
+        <p>{area.summary}</p>
+        <ul class="tag-list">{area.tags.map((tag) => <li>{tag}</li>)}</ul>
+      </article>
+    ))}
+  </section>
+
+  <section class="section-shell project-panel">
+    <p class="eyebrow">Sponsored work</p>
+    <h2>{sponsoredProject.title}</h2>
+    <div class="project-panel-meta">
+      <p><strong>Funding</strong><span>{sponsoredProject.agency}</span></p>
+      <p><strong>Role</strong><span>{sponsoredProject.role}</span></p>
+      <p><strong>Timeline</strong><span>{sponsoredProject.period}</span></p>
+    </div>
+  </section>
+
+  <section id="highlights" class="section-shell timeline-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Professional highlights</p>
+      <h2>A record of learning and contribution.</h2>
+    </div>
+    <div class="timeline">
+      {sortedAccomplishments.map((item) => (
+        <article>
+          <span>{item.year}</span>
+          <div>
+            <h3>{item.title}</h3>
+            <p class="muted">{item.issuer}</p>
+            <p>{item.summary}</p>
+            {item.url && <a class="text-link" href={item.url} target="_blank" rel="noreferrer">Read more <span>↗</span></a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell two-column-details">
+    <div>
+      <p class="eyebrow">Education</p>
+      {education.map((item) => (
+        <article class="detail-item">
+          <span>{item.years}</span>
+          <h3>{item.title}</h3>
+          <p>{item.place}</p>
+          {item.note && <p class="small-note">{item.note}</p>}
+        </article>
+      ))}
+    </div>
+    <div>
+      <p class="eyebrow">Selected invited talks</p>
+      {invitedTalks.map((item) => (
+        <article class="detail-item">
+          <span>{item.year}</span>
+          <h3>{item.title}</h3>
+          <p>{item.place}</p>
+        </article>
+      ))}
+      <p class="eyebrow memberships-label">Memberships</p>
+      <p>{memberships.join(" · ")}</p>
+    </div>
+  </section>
+</BaseLayout>

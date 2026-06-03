@@ -1,0 +1,55 @@
+---
+import { nav, site } from "../data/site";
+
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === "/" ? pathname === "/" : pathname.startsWith(href.replace("/#", "/"));
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="fatimahjalid home">
+    <span class="brand-mark">FJ</span>
+    <span class="brand-copy">
+      <strong>{site.brand}</strong>
+      <small>{site.subtitle}</small>
+    </span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+    <span class="sr-only">Open menu</span>
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+    <button class="menu-close" type="button" aria-label="Close menu">Close</button>
+    <p class="nav-label">Explore</p>
+    {
+      nav.map((item) => (
+        <a class:list={[{ active: isActive(item.href) }, item.label === "Contact" && "contact-link"]} href={item.href}>
+          {item.label}
+        </a>
+      ))
+    }
+    <div class="nav-foot">
+      <p>{site.subtitle}</p>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  const close = document.querySelector<HTMLButtonElement>(".menu-close");
+  const nav = document.querySelector<HTMLElement>(".primary-nav");
+
+  const setMenu = (open: boolean) => {
+    nav?.classList.toggle("open", open);
+    document.body.classList.toggle("menu-open", open);
+    toggle?.setAttribute("aria-expanded", String(open));
+  };
+
+  toggle?.addEventListener("click", () => setMenu(true));
+  close?.addEventListener("click", () => setMenu(false));
+  nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (event) => event.key === "Escape" && setMenu(false));
+</script>

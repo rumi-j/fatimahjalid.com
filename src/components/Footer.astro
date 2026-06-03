@@ -1,0 +1,25 @@
+---
+import { site } from "../data/site";
+---
+
+<footer id="contact" class="site-footer">
+  <div class="footer-intro">
+    <p class="eyebrow">Contact</p>
+    <h2>Let us exchange ideas.</h2>
+    <p>
+      I welcome thoughtful conversations with students and collaborators interested in
+      catalysis, modelling, and sustainable chemical pathways.
+    </p>
+    <a class="button button-light" href={`mailto:${site.email}`}>Write to me</a>
+  </div>
+  <div class="footer-links">
+    <a href={`mailto:${site.email}`}>{site.email}</a>
+    <a href={site.links.nitProfile} target="_blank" rel="noreferrer">NIT Srinagar profile <span>↗</span></a>
+    <a href={site.links.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+    <a href={site.links.scholar} target="_blank" rel="noreferrer">Google Scholar <span>↗</span></a>
+    <a href={site.links.orcid} target="_blank" rel="noreferrer">ORCID <span>↗</span></a>
+    <a href={site.links.blog} target="_blank" rel="noreferrer">Peace, my blog <span>↗</span></a>
+    <span>CV available on request</span>
+  </div>
+  <p class="footer-note">© {new Date().getFullYear()} fatimahjalid. Built with care.</p>
+</footer>

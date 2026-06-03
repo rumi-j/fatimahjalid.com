@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { courseProjects, courses } from "../data/teaching";
+import { group } from "../data/group";
+import { site } from "../data/site";
+---
+
+<BaseLayout
+  title="Teaching | Dr. Fatima Jalid"
+  description="Teaching archive, course projects, and mentoring invitation from Dr. Fatima Jalid."
+>
+  <PageIntro
+    eyebrow="Teaching"
+    title="Learning begins with better questions."
+    intro="I see the classroom as a place to connect fundamentals with the habit of inquiry: to understand a process, test an assumption, and learn how models can clarify the world."
+  />
+
+  <section class="section-shell courses-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Course archive</p>
+      <h2>Courses taught.</h2>
+    </div>
+    <div class="course-grid">
+      {courses.map((course) => (
+        <article class="course-card">
+          <h3>{course.title}</h3>
+          <p>{course.terms.join(" · ")}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="project-work">
+    <div class="section-shell">
+      <div class="section-heading narrow">
+        <p class="eyebrow">In practice</p>
+        <h2>Recent course projects.</h2>
+      </div>
+      <div class="course-project-grid">
+        {courseProjects.map((project) => (
+          <article>
+            <p class="eyebrow">{project.term} · {project.course}</p>
+            <h3>{project.title}</h3>
+            <p>{project.summary}</p>
+            {project.url && <a class="text-link" href={project.url} target="_blank" rel="noreferrer">Explore CatMAP <span>↗</span></a>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell group-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Research group</p>
+      <h2>Working with students.</h2>
+    </div>
+    <p class="group-intro">{group.intro}</p>
+    <div class="group-grid">
+      <div>
+        <p class="eyebrow">What I look for</p>
+        <ul class="group-list">
+          {group.lookingFor.map((quality) => <li>{quality}</li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Open directions</p>
+        <div class="group-directions">
+          {group.openDirections.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {group.members.length > 0 && (
+      <div class="group-members">
+        <p class="eyebrow">Group members</p>
+        <div class="group-member-grid">
+          {group.members.map((member) => (
+            <article>
+              <h3>{member.name}</h3>
+              <p>{member.role}</p>
+              {member.focus && <p class="muted">{member.focus}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {import.meta.env.DEV && (
+      <aside class="review-note">
+        <strong>Review note (shown only in local preview):</strong>
+        <ul>{group.reviewItems.map((reminder) => <li>{reminder}</li>)}</ul>
+      </aside>
+    )}
+  </section>
+
+  <section class="section-shell mentoring-panel">
+    <p class="eyebrow">For students</p>
+    <h2>Bring a question worth following.</h2>
+    <p>
+      Students interested in course projects, research problems, or thoughtful mentorship
+      are welcome to write. A good conversation is often where the work begins.
+    </p>
+    <a class="button" href={`mailto:${site.email}?subject=Student%20project%20or%20mentorship%20inquiry`}>Start a conversation</a>
+  </section>
+</BaseLayout>
