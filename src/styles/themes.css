@@ -24,17 +24,23 @@
 [data-theme="mihrab"] .footer-links a { color: var(--lapis); }
 [data-theme="mihrab"] .primary-nav a::after { background: var(--gold); }
 
-/* Pointed mihrab arch on portraits (replaces the rounded arch) */
-[data-theme="mihrab"] .portrait-frame img { clip-path: url(#mihrab-arch); border-radius: 0; }
+/* Elegant arched niche: a gently arched photo set inside a rust + gold double-line
+   frame. The portrait is NEVER clipped/cropped — the arch is ornament around it. */
+[data-theme="mihrab"] .portrait-frame img { border-radius: 150px 150px 8px 8px; }
 [data-theme="mihrab"] .portrait-media::before {
-  inset: -3px -3px 0 -3px;
-  border: 0;
-  border-radius: 0;
-  background: var(--rust);
-  clip-path: url(#mihrab-arch);
-  z-index: 0;
+  inset: -13px -13px 0 -13px;
+  border: 1px solid var(--rust);
+  border-radius: 164px 164px 10px 10px;
+  background: none;
 }
-[data-theme="mihrab"] .portrait-media picture { position: relative; z-index: 1; }
+[data-theme="mihrab"] .portrait-media::after {
+  content: "";
+  position: absolute;
+  inset: -6px -6px 0 -6px;
+  border: 1px solid var(--gold);
+  border-radius: 157px 157px 9px 9px;
+  pointer-events: none;
+}
 
 /* 8-point star separators in the interest strip */
 [data-theme="mihrab"] .interest-strip span::before { content: "✴"; }
@@ -84,67 +90,76 @@
 /* Buttons pick up a gold outline accent */
 [data-theme="mihrab"] .button-outline { border-color: var(--gold); }
 
-/* ===========================  ATLAS  =======================================
-   Editorial maximalism: dramatic type scale, vivid accent, squared geometry,
-   heavy rules. A bold contemporary magazine feel.
+/* ===========================  MODERN  ======================================
+   Sleek and contemporary: geometric sans type, generous whitespace, a single
+   crisp accent, soft-rounded geometry, monospace technical labels. No serif,
+   no ornament — a clean product/portfolio feel.
    ========================================================================== */
 
-[data-theme="atlas"] {
-  --paper: #f5f3ec;
-  --ink: #15110d;
-  --ink-deep: #15110d;
-  --ink-soft: #4b463d;
-  --rust: #db4322;
-  --gold: #e8a72c;
-  --line: rgba(21, 17, 13, 0.22);
+[data-theme="modern"] {
+  --paper: #f4f5f3;
+  --cream: #ebeeec;
+  --sage: #e2e8e3;
+  --ink: #16191b;
+  --ink-deep: #16191b;
+  --ink-soft: #5a6568;
+  --rust: #0e7a57;          /* single fresh accent (also replaces gold uses) */
+  --gold: #0e7a57;
+  --line: rgba(22, 25, 27, 0.12);
+  --serif: "Space Grotesk", "DM Sans", sans-serif;  /* headings become modern sans */
 }
 
-/* Oversized display type */
-[data-theme="atlas"] h1 { font-size: clamp(4.4rem, 13vw, 12rem); letter-spacing: -0.055em; line-height: 0.88; }
-[data-theme="atlas"] h2 { font-size: clamp(2.8rem, 6.5vw, 6rem); letter-spacing: -0.045em; line-height: 0.95; }
-[data-theme="atlas"] .hero h1 { margin: 8px 0 24px; }
+/* Geometric sans headings — tighter and lighter than the serif */
+[data-theme="modern"] h1, [data-theme="modern"] h2 { font-weight: 600; letter-spacing: -0.035em; }
+[data-theme="modern"] h1 { font-size: clamp(3.4rem, 7.4vw, 6.6rem); line-height: 1.0; }
+[data-theme="modern"] h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); line-height: 1.05; }
+[data-theme="modern"] h3 { font-family: var(--serif); }
+[data-theme="modern"] em { font-style: normal; color: var(--rust); }
 
-/* Loud, structural eyebrows + nav */
-[data-theme="atlas"] .eyebrow { color: var(--ink); font-size: 0.8rem; letter-spacing: 0.26em; }
-[data-theme="atlas"] .eyebrow::after { content: ""; display: inline-block; width: 34px; height: 2px; margin-left: 12px; background: var(--rust); vertical-align: middle; }
-[data-theme="atlas"] .site-header { border-bottom: 2px solid var(--ink); background: var(--paper); }
-[data-theme="atlas"] .primary-nav { font-size: 0.72rem; letter-spacing: 0.16em; }
-[data-theme="atlas"] .primary-nav a::after { height: 2px; background: var(--rust); }
+/* Monospace technical labels */
+[data-theme="modern"] .eyebrow,
+[data-theme="modern"] .small-note,
+[data-theme="modern"] .text-link,
+[data-theme="modern"] .publication-meta {
+  font-family: "Space Mono", ui-monospace, monospace;
+  letter-spacing: 0.03em;
+}
+[data-theme="modern"] .eyebrow { color: var(--ink-soft); font-weight: 400; }
+[data-theme="modern"] .eyebrow::before { content: "\2192\00a0"; color: var(--rust); }
+[data-theme="modern"] .text-link { color: var(--rust); }
 
-/* Bigger, firmer lede */
-[data-theme="atlas"] .hero-lede { color: var(--ink); font-size: 1.32rem; max-width: 580px; }
+/* Soft-rounded modern geometry */
+[data-theme="modern"] .button { border-radius: 10px; }
+[data-theme="modern"] .button:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-2px); }
+[data-theme="modern"] .button-outline:hover { color: #fff; }
+[data-theme="modern"] .brand-mark { border-radius: 13px; }
+[data-theme="modern"] .primary-nav .contact-link { background: var(--rust); }
+[data-theme="modern"] .primary-nav a::after { background: var(--rust); }
 
-/* Squared geometry everywhere */
-[data-theme="atlas"] .button { border-radius: 0; border-width: 2px; }
-[data-theme="atlas"] .button:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-2px); }
-[data-theme="atlas"] .brand-mark { border-radius: 6px; }
-[data-theme="atlas"] .primary-nav .contact-link { border-radius: 0; }
+/* Clean rounded-rectangle portrait — fully visible, no arch frame */
+[data-theme="modern"] .portrait-frame img { border-radius: 18px; max-height: 600px; }
+[data-theme="modern"] .portrait-media::before { content: none; }
 
-/* Portrait becomes a hard-edged framed plate */
-[data-theme="atlas"] .portrait-frame img { border-radius: 0; }
-[data-theme="atlas"] .portrait-media::before { inset: -10px; border: 2px solid var(--ink); border-radius: 0; background: transparent; }
-[data-theme="atlas"] .portrait-frame figcaption { border-top: 2px solid var(--ink); font-weight: 700; color: var(--ink); }
+/* Standalone cards get a soft radius (grid-divider cards left square) */
+[data-theme="modern"] .research-card,
+[data-theme="modern"] .book-card,
+[data-theme="modern"] .course-project-grid article,
+[data-theme="modern"] .group-directions article { border-radius: 14px; }
 
-/* Interest strip becomes a vivid ticker */
-[data-theme="atlas"] .interest-strip {
-  background: var(--rust);
+/* Quiet, technical interest strip */
+[data-theme="modern"] .interest-strip {
+  background: var(--ink);
   color: #fff;
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 0.84rem;
+  letter-spacing: 0;
+  text-transform: none;
 }
-[data-theme="atlas"] .interest-strip span::before { content: "—"; color: rgba(255, 255, 255, 0.7); }
+[data-theme="modern"] .interest-strip span::before { content: "/\00a0"; color: var(--rust); }
 
-/* Heavier section rules + bigger numerals */
-[data-theme="atlas"] .latest-paper,
-[data-theme="atlas"] .personal-invite,
-[data-theme="atlas"] .timeline { border-top-width: 2px; }
-[data-theme="atlas"] .highlight-card span,
-[data-theme="atlas"] .timeline span,
-[data-theme="atlas"] .card-number { font-size: 2.4rem; color: var(--rust); }
-[data-theme="atlas"] .pub-year { color: var(--rust); }
-
-/* Research featured card stays bold but squared */
-[data-theme="atlas"] .research-card { border-radius: 0; border-width: 1.5px; }
+/* Accent numerals in the modern sans */
+[data-theme="modern"] .highlight-card span,
+[data-theme="modern"] .timeline span,
+[data-theme="modern"] .card-number,
+[data-theme="modern"] .pub-year,
+[data-theme="modern"] .publication-index { color: var(--rust); font-family: var(--serif); }
