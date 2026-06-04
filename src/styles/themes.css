@@ -1,0 +1,150 @@
+/* ============================================================================
+   Design-direction themes. Activated by [data-theme="..."] on <html> via the
+   dev-only ThemeSwitcher. No attribute = the default Editorial look (global.css).
+   These are exploratory skins layered on top of global.css.
+   ============================================================================ */
+
+/* ===========================  MIHRAB  ======================================
+   Islamic architecture & calligraphy: Mughal pointed arches, gold + lapis
+   jewel tones, 8-point star motifs, illuminated verse frames.
+   ========================================================================== */
+
+[data-theme="mihrab"] {
+  --rust: #b35539;
+  --gold: #c2962f;
+  --gold-soft: rgba(194, 150, 47, 0.22);
+  --lapis: #1b4965;
+  --paper: #fbf6ea;
+  --cream: #f1e8d6;
+}
+
+/* Links & interactive accents lean lapis */
+[data-theme="mihrab"] .text-link,
+[data-theme="mihrab"] .profile-links a,
+[data-theme="mihrab"] .footer-links a { color: var(--lapis); }
+[data-theme="mihrab"] .primary-nav a::after { background: var(--gold); }
+
+/* Pointed mihrab arch on portraits (replaces the rounded arch) */
+[data-theme="mihrab"] .portrait-frame img { clip-path: url(#mihrab-arch); border-radius: 0; }
+[data-theme="mihrab"] .portrait-media::before {
+  inset: -3px -3px 0 -3px;
+  border: 0;
+  border-radius: 0;
+  background: var(--rust);
+  clip-path: url(#mihrab-arch);
+  z-index: 0;
+}
+[data-theme="mihrab"] .portrait-media picture { position: relative; z-index: 1; }
+
+/* 8-point star separators in the interest strip */
+[data-theme="mihrab"] .interest-strip span::before { content: "✴"; }
+
+/* A small star flourish before each section eyebrow */
+[data-theme="mihrab"] .eyebrow::before { content: "✦ "; color: var(--gold); }
+[data-theme="mihrab"] .eyebrow.light::before { color: var(--gold); }
+
+/* Arched tops on the research cards echo the architecture */
+[data-theme="mihrab"] .research-card { border-radius: 90px 90px 6px 6px; }
+
+/* Illuminated frame around the Iqbal verses */
+[data-theme="mihrab"] .iqbal-grid article {
+  position: relative;
+  border: 1.5px solid var(--gold);
+  box-shadow: inset 0 0 0 4px var(--gold-soft);
+  padding: 34px 30px;
+  background: rgba(255, 255, 255, 0.4);
+}
+[data-theme="mihrab"] .iqbal-grid article::before {
+  content: "✦";
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  color: var(--gold);
+  font-size: 16px;
+}
+[data-theme="mihrab"] .iqbal-grid article::after {
+  content: "✦";
+  position: absolute;
+  bottom: 10px;
+  left: 14px;
+  color: var(--gold);
+  font-size: 16px;
+}
+
+/* A repeating star band tops the footer */
+[data-theme="mihrab"] .site-footer {
+  border-top: 3px solid var(--gold);
+  background-image:
+    radial-gradient(circle at center, var(--gold) 1.3px, transparent 1.6px);
+  background-size: 26px 26px;
+  background-position: top center;
+  background-repeat: repeat-x;
+}
+
+/* Buttons pick up a gold outline accent */
+[data-theme="mihrab"] .button-outline { border-color: var(--gold); }
+
+/* ===========================  ATLAS  =======================================
+   Editorial maximalism: dramatic type scale, vivid accent, squared geometry,
+   heavy rules. A bold contemporary magazine feel.
+   ========================================================================== */
+
+[data-theme="atlas"] {
+  --paper: #f5f3ec;
+  --ink: #15110d;
+  --ink-deep: #15110d;
+  --ink-soft: #4b463d;
+  --rust: #db4322;
+  --gold: #e8a72c;
+  --line: rgba(21, 17, 13, 0.22);
+}
+
+/* Oversized display type */
+[data-theme="atlas"] h1 { font-size: clamp(4.4rem, 13vw, 12rem); letter-spacing: -0.055em; line-height: 0.88; }
+[data-theme="atlas"] h2 { font-size: clamp(2.8rem, 6.5vw, 6rem); letter-spacing: -0.045em; line-height: 0.95; }
+[data-theme="atlas"] .hero h1 { margin: 8px 0 24px; }
+
+/* Loud, structural eyebrows + nav */
+[data-theme="atlas"] .eyebrow { color: var(--ink); font-size: 0.8rem; letter-spacing: 0.26em; }
+[data-theme="atlas"] .eyebrow::after { content: ""; display: inline-block; width: 34px; height: 2px; margin-left: 12px; background: var(--rust); vertical-align: middle; }
+[data-theme="atlas"] .site-header { border-bottom: 2px solid var(--ink); background: var(--paper); }
+[data-theme="atlas"] .primary-nav { font-size: 0.72rem; letter-spacing: 0.16em; }
+[data-theme="atlas"] .primary-nav a::after { height: 2px; background: var(--rust); }
+
+/* Bigger, firmer lede */
+[data-theme="atlas"] .hero-lede { color: var(--ink); font-size: 1.32rem; max-width: 580px; }
+
+/* Squared geometry everywhere */
+[data-theme="atlas"] .button { border-radius: 0; border-width: 2px; }
+[data-theme="atlas"] .button:hover { background: var(--rust); border-color: var(--rust); transform: translateY(-2px); }
+[data-theme="atlas"] .brand-mark { border-radius: 6px; }
+[data-theme="atlas"] .primary-nav .contact-link { border-radius: 0; }
+
+/* Portrait becomes a hard-edged framed plate */
+[data-theme="atlas"] .portrait-frame img { border-radius: 0; }
+[data-theme="atlas"] .portrait-media::before { inset: -10px; border: 2px solid var(--ink); border-radius: 0; background: transparent; }
+[data-theme="atlas"] .portrait-frame figcaption { border-top: 2px solid var(--ink); font-weight: 700; color: var(--ink); }
+
+/* Interest strip becomes a vivid ticker */
+[data-theme="atlas"] .interest-strip {
+  background: var(--rust);
+  color: #fff;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+[data-theme="atlas"] .interest-strip span::before { content: "—"; color: rgba(255, 255, 255, 0.7); }
+
+/* Heavier section rules + bigger numerals */
+[data-theme="atlas"] .latest-paper,
+[data-theme="atlas"] .personal-invite,
+[data-theme="atlas"] .timeline { border-top-width: 2px; }
+[data-theme="atlas"] .highlight-card span,
+[data-theme="atlas"] .timeline span,
+[data-theme="atlas"] .card-number { font-size: 2.4rem; color: var(--rust); }
+[data-theme="atlas"] .pub-year { color: var(--rust); }
+
+/* Research featured card stays bold but squared */
+[data-theme="atlas"] .research-card { border-radius: 0; border-width: 1.5px; }

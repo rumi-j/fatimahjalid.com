@@ -2,8 +2,10 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FontSwitcher from "../components/FontSwitcher.astro";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { site } from "../data/site";
 import "../styles/global.css";
+import "../styles/themes.css";
 
 interface Props {
   title?: string;
@@ -75,6 +77,15 @@ const jsonLdBlocks = [
         }
       } catch (e) {}
     </script>
+    {import.meta.env.DEV && (
+      <script is:inline>
+        // Dev-only: apply the saved design direction before paint (no flash).
+        try {
+          var t = localStorage.getItem("dev-theme");
+          if (t) document.documentElement.dataset.theme = t;
+        } catch (e) {}
+      </script>
+    )}
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
@@ -97,11 +108,20 @@ const jsonLdBlocks = [
     ))}
   </head>
   <body>
+    <svg width="0" height="0" aria-hidden="true" focusable="false" class="svg-defs">
+      <defs>
+        <!-- Mughal-style pointed arch (mihrab), used to frame portraits in the Mihrab theme. -->
+        <clipPath id="mihrab-arch" clipPathUnits="objectBoundingBox">
+          <path d="M0,1 L0,0.36 C0,0.2 0.06,0.1 0.18,0.05 C0.31,0 0.38,-0.02 0.5,0.04 C0.62,-0.02 0.69,0 0.82,0.05 C0.94,0.1 1,0.2 1,0.36 L1,1 Z"></path>
+        </clipPath>
+      </defs>
+    </svg>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
     <main id="main"><slot /></main>
     <Footer />
     {import.meta.env.DEV && <FontSwitcher />}
+    {import.meta.env.DEV && <ThemeSwitcher />}
     <script is:inline>
       (function () {
         if (!document.documentElement.classList.contains("reveal-on")) return;
