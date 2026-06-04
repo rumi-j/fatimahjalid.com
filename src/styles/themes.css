@@ -114,6 +114,9 @@
 [data-theme="modern"] h1 { font-size: clamp(3.4rem, 7.4vw, 6.6rem); line-height: 1.0; }
 [data-theme="modern"] h2 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); line-height: 1.05; }
 [data-theme="modern"] h3 { font-family: var(--serif); }
+/* Keep the small, special-purpose h2s from inheriting the big modern h2 size */
+[data-theme="modern"] .pub-year { font-size: 1.7rem; line-height: 1; }
+[data-theme="modern"] .research-card h2 { font-size: 2rem; }
 [data-theme="modern"] em { font-style: normal; color: var(--rust); }
 
 /* Monospace technical labels */
