@@ -9,9 +9,16 @@ const themes = [
 ];
 ---
 
-<div class="theme-switcher" aria-label="Design direction (dev only)">
-  <span>Direction</span>
-  {themes.map((t) => <button type="button" data-theme-id={t.id}>{t.label}</button>)}
+<div class="theme-switcher" aria-label="Design direction and prototype links (dev only)">
+  <div class="switcher-row">
+    <span>Skins</span>
+    {themes.map((t) => <button type="button" data-theme-id={t.id}>{t.label}</button>)}
+  </div>
+  <div class="switcher-row prototype-row">
+    <span>Prototypes</span>
+    <a href="/proto/molecular">Molecular</a>
+    <a href="/proto/mihrab">Deep Mihrab</a>
+  </div>
 </div>
 
 <style>
@@ -20,8 +27,8 @@ const themes = [
     z-index: 101;
     bottom: 64px;
     left: 16px;
-    display: flex;
-    align-items: center;
+    display: grid;
+    align-items: start;
     gap: 6px;
     padding: 8px 10px;
     border-radius: 12px;
@@ -32,8 +39,14 @@ const themes = [
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(8px);
   }
+  .switcher-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
   .theme-switcher span { opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; }
-  .theme-switcher button {
+  .theme-switcher button,
+  .theme-switcher a {
     padding: 5px 9px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 999px;
@@ -41,8 +54,17 @@ const themes = [
     color: inherit;
     cursor: pointer;
     font: inherit;
+    text-decoration: none;
   }
   .theme-switcher button.active { background: #deb75d; border-color: #deb75d; color: #173b32; }
+  .prototype-row a {
+    border-color: rgba(89, 217, 205, 0.35);
+    color: #b8fff7;
+  }
+  .prototype-row a:hover,
+  .prototype-row a:focus-visible {
+    background: rgba(89, 217, 205, 0.18);
+  }
 </style>
 
 <script>

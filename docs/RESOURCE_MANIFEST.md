@@ -5,7 +5,7 @@ coding assistant.
 
 ## Project root
 
-`/Users/fatimahjalid/Documents/New project/fatimahjalid-next`
+`/Users/fatimahjalid/Documents/Projects/Personal Website`
 
 ## Public deployment resources
 

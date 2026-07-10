@@ -3,7 +3,7 @@
 Open this folder as the project root:
 
 ```text
-/Users/fatimahjalid/Documents/New project/fatimahjalid-next
+/Users/fatimahjalid/Documents/Projects/Personal Website
 ```
 
 ## What this is

@@ -1,0 +1,46 @@
+---
+export function getStaticPaths() {
+  return import.meta.env.DEV
+    ? [{ params: { concept: "molecular" } }, { params: { concept: "mihrab" } }]
+    : [];
+}
+
+const concept = Astro.params.concept;
+const isMolecular = concept === "molecular";
+const isMihrab = concept === "mihrab";
+const isKnownConcept = isMolecular || isMihrab;
+
+const meta = isMolecular
+  ? {
+      title: "Molecular Interface prototype | Dr. Fatima Jalid",
+      description:
+        "A dev-only computational catalysis homepage prototype for Dr. Fatima Jalid.",
+      variant: "molecular" as const,
+    }
+  : {
+      title: "Deep Mihrab prototype | Dr. Fatima Jalid",
+      description:
+        "A dev-only architectural and manuscript-inspired homepage prototype for Dr. Fatima Jalid.",
+      variant: "mihrab" as const,
+    };
+
+let ProtoLayout;
+let PrototypeHome;
+
+if (import.meta.env.DEV && isKnownConcept) {
+  ProtoLayout = (await import("../../layouts/ProtoLayout.astro")).default;
+  PrototypeHome = isMolecular
+    ? (await import("../../components/proto/MolecularHome.astro")).default
+    : (await import("../../components/proto/MihrabHome.astro")).default;
+} else if (!isKnownConcept) {
+  Astro.response.status = 404;
+}
+---
+
+{
+  ProtoLayout && PrototypeHome && (
+    <ProtoLayout title={meta.title} description={meta.description} variant={meta.variant}>
+      <PrototypeHome />
+    </ProtoLayout>
+  )
+}
