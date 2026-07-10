@@ -1,12 +1,108 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { octagonSquareLattice, starPath } from "../lib/girih";
+
+const CELL = 110;
+const COLS = 5;
+const ROWS = 3;
+const lattice = octagonSquareLattice(COLS, ROWS, CELL);
+
+// The missing tile: one octagon rendered as a dashed outline.
+const missing = { col: 2, row: 1 };
+const cut = CELL * 0.29;
+const mx = missing.col * CELL;
+const my = missing.row * CELL;
+const missingOutline = [
+  `M${mx + cut} ${my}`,
+  `L${mx + CELL - cut} ${my}`,
+  `L${mx + CELL} ${my + cut}`,
+  `L${mx + CELL} ${my + CELL - cut}`,
+  `L${mx + CELL - cut} ${my + CELL}`,
+  `L${mx + cut} ${my + CELL}`,
+  `L${mx} ${my + CELL - cut}`,
+  `L${mx} ${my + cut}`,
+  "Z",
+].join("");
+
+const inMissing = (p: { x: number; y: number }) =>
+  p.x >= mx && p.x <= mx + CELL && p.y >= my && p.y <= my + CELL;
+const edges = lattice.edges.filter((e) => !(inMissing(e.a) && inMissing(e.b)));
+const star = starPath(mx + CELL / 2, my + CELL / 2, CELL * 0.3);
 ---
 
 <BaseLayout title="Page not found | fatimahjalid" description="The requested page could not be found.">
   <section class="section-shell not-found">
-    <p class="eyebrow">404 · A quiet detour</p>
+    <p class="eyebrow">404 · a page outside the tiling</p>
     <h1>This path does not lead anywhere yet.</h1>
+    <p class="not-found-log">&gt; path not found in network — 404</p>
     <p>Return to the homepage, or take a moment to begin again.</p>
     <a class="button" href="/">Back home</a>
+
+    <svg
+      class="missing-tile-lattice"
+      viewBox={`-2 -2 ${COLS * CELL + 4} ${ROWS * CELL + 4}`}
+      role="img"
+      focusable="false"
+    >
+      <title>A girih tiling with one tile missing</title>
+      <g class="nf-lattice">
+        {edges.map((e) => <line x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />)}
+      </g>
+      <path class="nf-missing" d={missingOutline} tabindex="-1" />
+      <path class="nf-star" d={star} />
+    </svg>
+    <p class="nf-hint" aria-hidden="true">the missing tile can still be set</p>
   </section>
+
+  <script>
+    // Decorative easter egg: clicking the dashed tile sets a gold star in it.
+    const tile = document.querySelector<SVGPathElement>(".nf-missing");
+    const star = document.querySelector<SVGPathElement>(".nf-star");
+    tile?.addEventListener("click", () => {
+      star?.classList.add("set");
+      tile.classList.add("filled");
+    });
+  </script>
 </BaseLayout>
+
+<style>
+  .not-found-log {
+    margin: -4px 0 18px;
+    color: var(--lapis);
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+  .missing-tile-lattice {
+    display: block;
+    max-width: 560px;
+    margin-top: 56px;
+  }
+  .nf-lattice line { stroke: var(--line); stroke-width: 1; }
+  .nf-missing {
+    fill: transparent;
+    stroke: var(--rust);
+    stroke-width: 1.6;
+    stroke-dasharray: 7 6;
+    cursor: pointer;
+  }
+  .nf-missing.filled { stroke-dasharray: none; stroke: var(--gold); }
+  .nf-star {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 1.6;
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+  }
+  .nf-star.set { opacity: 1; }
+  .nf-hint {
+    margin-top: 10px;
+    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+</style>

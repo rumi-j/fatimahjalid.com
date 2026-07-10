@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
+import ArchFrame from "../components/girih/ArchFrame.astro";
 import { courseProjects, courses } from "../data/teaching";
 import { group } from "../data/group";
 import { site } from "../data/site";
@@ -16,6 +17,7 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
 >
   <PageIntro
     eyebrow="Teaching"
+    folio="05"
     title="Learning begins with better questions."
     intro="I see the classroom as a place to connect fundamentals with the habit of inquiry: to understand a process, test an assumption, and learn how models can clarify the world."
   />
@@ -25,7 +27,7 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
       <p class="eyebrow">Course archive</p>
       <h2>Courses taught.</h2>
     </div>
-    <div class="course-grid">
+    <div class="course-grid" data-reveal-stagger>
       {courses.map((course) => (
         <article class="course-card">
           <h3>{course.title}</h3>
@@ -106,13 +108,17 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
     )}
   </section>
 
-  <section class="section-shell mentoring-panel">
-    <p class="eyebrow">For students</p>
-    <h2>Bring a question worth following.</h2>
-    <p>
-      Students interested in course projects, research problems, or thoughtful mentorship
-      are welcome to write. A good conversation is often where the work begins.
-    </p>
-    <a class="button" href={`mailto:${site.email}?subject=Student%20project%20or%20mentorship%20inquiry`}>Start a conversation</a>
+  <section class="section-shell mentoring-section">
+    <ArchFrame class="mentoring-arch">
+      <div class="mentoring-panel-inner">
+        <p class="eyebrow">For students</p>
+        <h2>Bring a question worth following.</h2>
+        <p>
+          Students interested in course projects, research problems, or thoughtful mentorship
+          are welcome to write. A good conversation is often where the work begins.
+        </p>
+        <a class="button" href={`mailto:${site.email}?subject=Student%20project%20or%20mentorship%20inquiry`}>Start a conversation</a>
+      </div>
+    </ArchFrame>
   </section>
 </BaseLayout>
