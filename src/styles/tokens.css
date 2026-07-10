@@ -23,6 +23,7 @@
   /* accents */
   --gold: #b8892e;
   --gold-bright: #d9b45c;
+  --gold-text: #8a6420; /* AA-contrast gold for small text on paper */
   --lapis: #1c4e66;
   --lapis-bright: #8fbdd1;
   --rust: #b25438;
