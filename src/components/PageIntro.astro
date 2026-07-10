@@ -1,15 +1,20 @@
 ---
+import FolioLabel from "./FolioLabel.astro";
+import SectionRule from "./girih/SectionRule.astro";
+
 interface Props {
   eyebrow: string;
   title: string;
   intro: string;
+  folio?: string;
 }
 
-const { eyebrow, title, intro } = Astro.props;
+const { eyebrow, title, intro, folio } = Astro.props;
 ---
 
 <section class="page-intro section-shell">
-  <p class="eyebrow">{eyebrow}</p>
+  <FolioLabel folio={folio} label={eyebrow} />
   <h1>{title}</h1>
   <p class="page-intro-copy">{intro}</p>
+  <SectionRule tone="gold" class="page-intro-rule" />
 </section>

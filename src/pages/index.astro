@@ -1,12 +1,16 @@
 ---
-import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { site } from "../data/site";
-import { sponsoredProject } from "../data/research";
+import NetworkHero from "../components/NetworkHero.astro";
+import MicroNetwork from "../components/MicroNetwork.astro";
+import VersePanel from "../components/VersePanel.astro";
+import FolioLabel from "../components/FolioLabel.astro";
+import GirihMark from "../components/girih/GirihMark.astro";
+import SectionRule from "../components/girih/SectionRule.astro";
+import IlluminatedPanel from "../components/girih/IlluminatedPanel.astro";
+import { researchAreas, sponsoredProject } from "../data/research";
 import { accomplishments } from "../data/professional";
 import { publications } from "../data/publications";
 import { news } from "../data/news";
-import portrait from "../assets/fatima-jalid-portrait.jpg";
 
 const latestPaper = [...publications]
   .filter((item) => item.type === "journal")
@@ -16,68 +20,63 @@ const recentNews = [...news].sort((a, b) => b.year - a.year).slice(0, 4);
 ---
 
 <BaseLayout>
-  <section class="hero section-shell">
-    <div class="hero-copy">
-      <p class="eyebrow">Chemical engineering · Catalysis · Sustainability</p>
-      <h1>Catalysis with <em>purpose.</em></h1>
-      <p class="hero-lede">
-        I am <strong>{site.name}</strong>, {site.role} in the {site.department} at
-        {site.institute}. My work uses modelling and molecular insight to ask how chemistry
-        can serve a more sustainable future.
-      </p>
-      <div class="button-row">
-        <a class="button" href="/research">Explore my research</a>
-        <a class="button button-outline" href="/teaching">For students</a>
-      </div>
-    </div>
-    <figure class="portrait-frame">
-      <div class="portrait-media">
-        <Picture
-          src={portrait}
-          formats={["avif", "webp"]}
-          widths={[420, 640, 900, 1002]}
-          sizes="(max-width: 760px) 88vw, 36vw"
-          alt="Portrait of Dr. Fatima Jalid"
-          loading="eager"
-        />
-      </div>
-      <figcaption>
-        <span>01</span>
-        <p>Assistant Professor · NIT Srinagar</p>
-      </figcaption>
-    </figure>
-  </section>
+  <NetworkHero />
 
   <section class="interest-strip" aria-label="Research interests">
     <span>Microkinetic modelling</span><span>Computational catalysis</span>
     <span>Biorenewable chemicals</span><span>Reaction engineering</span>
   </section>
 
-  <section class="section-shell split-section">
-    <div>
-      <p class="eyebrow">A considered practice</p>
+  <section class="section-shell tile-band-section">
+    <div class="tile-band-mark" aria-hidden="true"><GirihMark size={72} /></div>
+    <div class="section-heading">
+      <FolioLabel folio="02" label="Systems under study" />
+      <h2>Four surfaces of one inquiry.</h2>
+    </div>
+    <div class="tile-band" data-reveal-stagger>
+      {researchAreas.map((area, i) => (
+        <article class="research-tile">
+          <MicroNetwork seed={i * 13 + 5} class="tile-network" />
+          <p class="eyebrow">{area.label}</p>
+          <h3>{area.title}</h3>
+          <p class="tile-summary">{area.summary}</p>
+        </article>
+      ))}
+    </div>
+    <a class="text-link tile-band-link" href="/research">Read about the work <span>↗</span></a>
+  </section>
+
+  <section class="section-shell manuscript-spread">
+    <div class="spread-copy">
+      <FolioLabel folio="03" label="A considered practice" />
       <h2>Working between molecular detail and a wider responsibility.</h2>
+      <div class="prose">
+        <p>
+          My research examines catalytic pathways from the surface upward: how individual
+          reactions connect, how catalysts deactivate, and how alloy design can move a
+          process toward better selectivity.
+        </p>
+        <p>
+          Alongside research, I care about teaching students to treat modelling as a way of
+          thinking clearly: a tool for asking sharper questions, not merely producing answers.
+        </p>
+      </div>
     </div>
-    <div class="prose">
-      <p>
-        My research examines catalytic pathways from the surface upward: how individual
-        reactions connect, how catalysts deactivate, and how alloy design can move a
-        process toward better selectivity.
-      </p>
-      <p>
-        Alongside research, I care about teaching students to treat modelling as a way of
-        thinking clearly: a tool for asking sharper questions, not merely producing answers.
-      </p>
-      <a class="text-link" href="/research">Read about the work <span>↗</span></a>
-    </div>
+    <VersePanel
+      title="Phool"
+      urdu={["صنوبر باغ میں آزاد بھی ہے، پا بہ گل بھی ہے", "انہی پابندیوں میں حاصل آزادی کو تو کر لے"]}
+      roman={["Sanobar bagh mein azad bhi hai, pa-ba-gil bhi hai", "Inhi pabandiyon mein hasil-e-azadi ko tu kar le"]}
+      source="Iqbal · Bang-e-Dra"
+      href="https://iqbalurdu.blogspot.com/2011/04/bang-e-dra-155-phool.html"
+    />
   </section>
 
   <section class="section-shell home-news">
     <div class="section-heading">
-      <p class="eyebrow">Recent</p>
+      <FolioLabel folio="04" label="Activity log" />
       <h2>What's new.</h2>
     </div>
-    <div class="timeline">
+    <div class="timeline" data-reveal-stagger>
       {recentNews.map((item) => (
         <article>
           <span>{item.date}</span>
@@ -104,10 +103,11 @@ const recentNews = [...news].sort((a, b) => b.year - a.year).slice(0, 4);
   <section class="feature-band">
     <div class="section-shell project-feature">
       <div>
-        <p class="eyebrow light">Featured sponsored project</p>
+        <FolioLabel folio="05" label="Featured sponsored project" light />
         <h2>{sponsoredProject.title}</h2>
       </div>
       <div class="project-meta">
+        <MicroNetwork seed={29} class="project-network" />
         <p><strong>{sponsoredProject.agency}</strong></p>
         <p>{sponsoredProject.role}</p>
         <p>{sponsoredProject.period}</p>
@@ -117,11 +117,11 @@ const recentNews = [...news].sort((a, b) => b.year - a.year).slice(0, 4);
 
   <section class="section-shell home-grid-section">
     <div class="section-heading">
-      <p class="eyebrow">Along the way</p>
+      <FolioLabel folio="06" label="Along the way" />
       <h2>Selected milestones.</h2>
       <a class="text-link" href="/research#highlights">View academic profile <span>↗</span></a>
     </div>
-    <div class="highlight-grid">
+    <div class="highlight-grid" data-reveal-stagger>
       {sortedAccomplishments.slice(0, 4).map((item) => (
         <article class="highlight-card">
           <span>{item.year}</span>
@@ -133,22 +133,24 @@ const recentNews = [...news].sort((a, b) => b.year - a.year).slice(0, 4);
     </div>
   </section>
 
-  <section class="section-shell latest-paper">
-    <p class="eyebrow">Latest publication</p>
-    <div>
-      <span>{latestPaper?.year}</span>
+  <section class="section-shell latest-paper-section">
+    <IlluminatedPanel tone="night" class="paper-colophon">
+      <FolioLabel folio="07" label="Latest publication" light />
+      <span class="colophon-year">{latestPaper?.year}</span>
       <h2>{latestPaper?.title}</h2>
-      <p>{latestPaper?.authors}</p>
-      <p>{latestPaper?.venue}</p>
-      <a class="text-link" href="/publications">Browse the full record <span>↗</span></a>
-    </div>
+      <p class="colophon-authors">{latestPaper?.authors}</p>
+      <p class="colophon-venue">{latestPaper?.venue}</p>
+      <a class="text-link colophon-link" href="/publications">Browse the full record <span>↗</span></a>
+    </IlluminatedPanel>
   </section>
 
   <section class="section-shell personal-invite">
     <div>
-      <p class="eyebrow">Beyond the work</p>
+      <FolioLabel folio="08" label="Beyond the work" />
       <h2>Books, verses, walks, and a life of attention.</h2>
     </div>
     <a class="button button-outline" href="/personal">Visit my personal corner</a>
   </section>
+
+  <div class="section-shell"><SectionRule tone="gold" /></div>
 </BaseLayout>

@@ -1,0 +1,20 @@
+---
+// Mono eyebrow in the manuscript-meets-lab-log voice: `folio 03 / publications`.
+interface Props {
+  folio?: string;
+  label: string;
+  light?: boolean;
+}
+
+const { folio, label, light = false } = Astro.props;
+---
+
+<p class:list={["eyebrow", "folio-label", { light }]}>
+  {folio && <span class="folio-no">folio {folio} / </span>}{label}
+</p>
+
+<style>
+  .folio-label { margin-bottom: 0.6em; }
+  .folio-no { color: var(--gold); }
+  .folio-label.light .folio-no { color: var(--gold-bright); }
+</style>

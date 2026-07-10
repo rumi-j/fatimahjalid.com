@@ -1,0 +1,82 @@
+---
+// Illuminated Urdu verse panel: Nastaliq couplet + serif-italic transliteration.
+import IlluminatedPanel from "./girih/IlluminatedPanel.astro";
+
+interface Props {
+  title: string;
+  urduTitle?: string;
+  urdu: string[];
+  roman: string[];
+  source?: string;
+  href?: string;
+  tone?: "paper" | "vellum" | "night";
+}
+
+const { title, urduTitle, urdu, roman, source, href, tone = "vellum" } = Astro.props;
+---
+
+<IlluminatedPanel tone={tone} class="verse-panel">
+  <h3>
+    {title}
+    {urduTitle && <span lang="ur" dir="rtl">{urduTitle}</span>}
+  </h3>
+  <p class="urdu" lang="ur" dir="rtl">
+    {urdu.map((line) => <span class="verse-line">{line}</span>)}
+  </p>
+  <p class="roman">
+    {roman.map((line) => <span class="verse-line">{line}</span>)}
+  </p>
+  {
+    source &&
+      (href ? (
+        <a class="verse-source" href={href} target="_blank" rel="noreferrer">
+          {source} ↗
+        </a>
+      ) : (
+        <span class="verse-source">{source}</span>
+      ))
+  }
+</IlluminatedPanel>
+
+<style>
+  .verse-panel :global(h3) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 18px;
+    font-family: var(--serif);
+    font-size: 1.7rem;
+  }
+  .verse-panel :global(h3 span) {
+    color: var(--rust);
+    font-family: var(--urdu);
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+  .verse-line { display: block; }
+  .urdu {
+    margin-bottom: 14px;
+    color: var(--ink);
+    font-family: var(--urdu);
+    font-size: var(--text-urdu);
+    line-height: 2.4;
+  }
+  :global(.panel-night) .urdu { color: var(--paper); }
+  .roman {
+    margin-bottom: 10px;
+    color: var(--rust);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .verse-source {
+    color: var(--lapis);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  :global(.panel-night) .verse-source { color: var(--lapis-bright); }
+</style>

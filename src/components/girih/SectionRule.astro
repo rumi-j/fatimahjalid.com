@@ -1,0 +1,53 @@
+---
+// Hairline rule with a girih knot at center. Lines carry pathLength="1"
+// so they can draw on scroll via the [data-reveal="draw"] system.
+import { starPath } from "../../lib/girih";
+
+interface Props {
+  tone?: "ink" | "gold" | "light";
+  class?: string;
+}
+
+const { tone = "gold", class: className } = Astro.props;
+const knot = starPath(12, 12, 10, 0.45);
+---
+
+<div class:list={["section-rule", `rule-${tone}`, className]} data-reveal="draw" aria-hidden="true">
+  <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" focusable="false">
+    <line class="draw-path" x1="100" y1="1" x2="0" y2="1" pathLength="1" />
+  </svg>
+  <svg class="rule-knot" viewBox="0 0 24 24" focusable="false">
+    <path class="draw-path" d={knot} pathLength="1" />
+  </svg>
+  <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" focusable="false">
+    <line class="draw-path" x1="0" y1="1" x2="100" y2="1" pathLength="1" />
+  </svg>
+</div>
+
+<style>
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .rule-line {
+    flex: 1;
+    height: 2px;
+    display: block;
+  }
+  .rule-knot {
+    width: 17px;
+    height: 17px;
+    flex: none;
+    display: block;
+  }
+  .rule-line .draw-path { stroke-width: 1; }
+  .rule-knot .draw-path { stroke-width: 1.6; fill: none; }
+  .rule-gold .draw-path { stroke: var(--line-gold); }
+  .rule-gold .rule-knot .draw-path { stroke: var(--gold); }
+  .rule-ink .draw-path { stroke: var(--line); }
+  .rule-ink .rule-knot .draw-path { stroke: var(--ink-soft); }
+  .rule-light .draw-path { stroke: var(--line-light); }
+  .rule-light .rule-knot .draw-path { stroke: var(--gold-bright); }
+</style>

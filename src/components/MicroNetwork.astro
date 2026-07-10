@@ -1,0 +1,58 @@
+---
+// Card-scale reaction diagram: a seeded pathway over a small girih lattice.
+// Static SVG generated at build time; draws on scroll via [data-reveal="draw"].
+import { octagonSquareLattice, pathway, seededRandom } from "../lib/girih";
+
+interface Props {
+  seed: number;
+  class?: string;
+}
+
+const { seed, class: className } = Astro.props;
+const cell = 56;
+const lattice = octagonSquareLattice(4, 2, cell);
+const walk = pathway(lattice, seed, 5);
+const rand = seededRandom(seed * 7 + 3);
+const nodeTones = ["gold", "lapis", "rust"];
+const marked = walk.points.map((p, i) => ({
+  ...p,
+  r: i === 0 || i === walk.points.length - 1 ? 4 : 2.6,
+  tone: nodeTones[Math.floor(rand() * nodeTones.length)],
+}));
+---
+
+<svg
+  class:list={["micro-network", className]}
+  viewBox={`-6 -6 ${4 * cell + 12} ${2 * cell + 12}`}
+  data-reveal="draw"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g class="mn-lattice">
+    {lattice.edges.map((e) => <line x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />)}
+  </g>
+  <path class="draw-path mn-pathway" d={walk.d} pathLength="1" />
+  {marked.map((n) => (
+    <circle class={`mn-node mn-${n.tone}`} cx={n.x} cy={n.y} r={n.r} />
+  ))}
+</svg>
+
+<style>
+  .micro-network { display: block; width: 100%; height: auto; }
+  .mn-lattice line { stroke: var(--line); stroke-width: 1; }
+  .mn-pathway {
+    fill: none;
+    stroke: var(--lapis);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .mn-node { opacity: 0.9; }
+  .mn-gold { fill: var(--gold); }
+  .mn-lapis { fill: var(--lapis); }
+  .mn-rust { fill: var(--rust); }
+  :global(.night) .mn-lattice line,
+  :global(.feature-band) .mn-lattice line { stroke: var(--line-light); }
+  :global(.night) .mn-pathway,
+  :global(.feature-band) .mn-pathway { stroke: var(--lapis-bright); }
+</style>

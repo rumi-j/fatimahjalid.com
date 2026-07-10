@@ -1,0 +1,21 @@
+/* Self-hosted fonts via Fontsource (replaces Google Fonts CDN). */
+@import "@fontsource/dm-serif-display/400.css";
+@import "@fontsource/dm-serif-display/400-italic.css";
+@import "@fontsource-variable/dm-sans/index.css";
+@import "@fontsource/space-mono/400.css";
+/* unicode-range (Arabic block) means this file is fetched only where Urdu renders. */
+@import "@fontsource/noto-nastaliq-urdu/400.css";
+
+/* Metric-matched fallbacks to keep CLS near zero while woff2 loads. */
+@font-face {
+  font-family: "DM Serif Display Fallback";
+  src: local("Georgia");
+  size-adjust: 105%;
+  ascent-override: 98%;
+  descent-override: 30%;
+}
+@font-face {
+  font-family: "DM Sans Fallback";
+  src: local("Arial");
+  size-adjust: 98%;
+}

@@ -1,0 +1,42 @@
+---
+// Gold double frame with corner stars — the "illuminated manuscript" panel.
+interface Props {
+  tone?: "paper" | "vellum" | "night";
+  class?: string;
+}
+
+const { tone = "vellum", class: className } = Astro.props;
+---
+
+<article class:list={["illuminated-panel", `panel-${tone}`, className]}>
+  <span class="corner-star star-tl" aria-hidden="true">✦</span>
+  <span class="corner-star star-br" aria-hidden="true">✦</span>
+  <slot />
+</article>
+
+<style>
+  .illuminated-panel {
+    position: relative;
+    padding: var(--space-panel, 34px);
+    border: 1.5px solid var(--gold);
+    box-shadow: inset 0 0 0 5px rgba(184, 137, 46, 0.14);
+  }
+  .panel-vellum { background: var(--vellum); }
+  .panel-paper { background: var(--paper); }
+  .panel-night {
+    background: var(--ink-deep);
+    color: var(--paper);
+    border-color: var(--gold-bright);
+    box-shadow: inset 0 0 0 5px rgba(217, 180, 92, 0.16);
+  }
+  .corner-star {
+    position: absolute;
+    color: var(--gold);
+    font-size: 0.85rem;
+    line-height: 1;
+    user-select: none;
+  }
+  .panel-night .corner-star { color: var(--gold-bright); }
+  .star-tl { top: 9px; left: 11px; }
+  .star-br { bottom: 9px; right: 11px; }
+</style>

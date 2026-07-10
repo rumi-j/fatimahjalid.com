@@ -1,5 +1,6 @@
 ---
 import { nav, site } from "../data/site";
+import GirihMark from "./girih/GirihMark.astro";
 
 const { pathname } = Astro.url;
 const isActive = (href: string) =>
@@ -8,7 +9,7 @@ const isActive = (href: string) =>
 
 <header class="site-header">
   <a class="brand" href="/" aria-label="fatimahjalid home">
-    <span class="brand-mark">FJ</span>
+    <span class="brand-mark"><GirihMark size={34} /></span>
     <span class="brand-copy">
       <strong>{site.brand}</strong>
       <small>{site.subtitle}</small>

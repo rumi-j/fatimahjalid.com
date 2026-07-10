@@ -1,0 +1,24 @@
+---
+// Faint gold + lapis crosshatch field, radially masked. Pure CSS gradients —
+// zero image bytes. Parent must be position: relative.
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={["girih-field", className]} aria-hidden="true"></div>
+
+<style>
+  .girih-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(45deg, rgba(184, 137, 46, 0.1) 0 1px, transparent 1px 34px),
+      repeating-linear-gradient(-45deg, rgba(28, 78, 102, 0.08) 0 1px, transparent 1px 34px);
+    mask-image: radial-gradient(120% 90% at 50% 0%, black 30%, transparent 78%);
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, black 30%, transparent 78%);
+  }
+</style>

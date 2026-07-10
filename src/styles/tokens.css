@@ -1,0 +1,53 @@
+/* ============================================================================
+   Design tokens — "Girih × Molecular"
+   Manuscript warmth as the ground; the science layer as fine line-work.
+   Color roles are strict:
+     gold  = ornament / geometry (never body-size text)
+     lapis = the science layer — links, annotations, network edges
+     rust  = human emphasis — <em>, favourites, active states
+     ink   = voice; paper/vellum = ground; ink-deep = night-folio bands
+   ============================================================================ */
+
+:root {
+  /* grounds */
+  --paper: #f9f5ea;
+  --vellum: #f1e9d7;
+  --cream: var(--vellum); /* legacy alias */
+  --sage: #dde4d4;
+  --ink-deep: #122922;
+
+  /* voices */
+  --ink: #1d3a33;
+  --ink-soft: #4b665d;
+
+  /* accents */
+  --gold: #b8892e;
+  --gold-bright: #d9b45c;
+  --lapis: #1c4e66;
+  --lapis-bright: #8fbdd1;
+  --rust: #b25438;
+
+  /* lines */
+  --line: rgba(29, 58, 51, 0.16);
+  --line-gold: rgba(184, 137, 46, 0.38);
+  --line-lapis: rgba(28, 78, 102, 0.3);
+  --line-light: rgba(249, 245, 234, 0.18);
+
+  /* type */
+  --serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --sans: "DM Sans Variable", "DM Sans", Arial, sans-serif;
+  --mono: "Space Mono", "Courier New", monospace;
+  --urdu: "Noto Nastaliq Urdu", serif;
+
+  --text-display: clamp(3.4rem, 7.6vw, 7.2rem);
+  --text-h2: clamp(2.2rem, 4.6vw, 4.4rem);
+  --text-h3: 1.4rem;
+  --text-label: 0.72rem;
+  --text-urdu: clamp(1.5rem, 2.6vw, 2.2rem);
+
+  /* rhythm */
+  --space-section: clamp(84px, 10vw, 136px);
+  --space-panel: clamp(28px, 4vw, 48px);
+  --shell: min(1180px, 90vw);
+  --shell-wide: min(1400px, 94vw);
+}

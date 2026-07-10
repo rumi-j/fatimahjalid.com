@@ -1,0 +1,41 @@
+---
+// 8-point khatam star monogram — brand mark, section punctuation, favicon source.
+import { starPath } from "../../lib/girih";
+
+interface Props {
+  size?: number;
+  variant?: "outline" | "filled";
+  class?: string;
+}
+
+const { size = 45, variant = "outline", class: className } = Astro.props;
+const outer = starPath(50, 50, 46);
+const inner = starPath(50, 50, 26, 0.5);
+---
+
+<svg
+  class:list={["girih-mark-svg", className]}
+  width={size}
+  height={size}
+  viewBox="0 0 100 100"
+  aria-hidden="true"
+  focusable="false"
+>
+  {
+    variant === "filled" ? (
+      <>
+        <path d={outer} fill="currentColor" />
+        <path d={inner} fill="var(--paper, #f9f5ea)" opacity="0.85" />
+      </>
+    ) : (
+      <>
+        <path d={outer} fill="none" stroke="currentColor" stroke-width="2.5" />
+        <path d={inner} fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.7" />
+      </>
+    )
+  }
+</svg>
+
+<style>
+  .girih-mark-svg { display: block; }
+</style>

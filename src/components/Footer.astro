@@ -1,10 +1,14 @@
 ---
 import { site } from "../data/site";
+import GirihMark from "./girih/GirihMark.astro";
 ---
 
 <footer id="contact" class="site-footer">
+  <div class="footer-star-band" aria-hidden="true">
+    {Array.from({ length: 9 }, () => <GirihMark size={13} variant="outline" />)}
+  </div>
   <div class="footer-intro">
-    <p class="eyebrow">Contact</p>
+    <p class="eyebrow light">Contact</p>
     <h2>Let us exchange ideas.</h2>
     <p>
       I welcome thoughtful conversations with students and collaborators interested in
@@ -21,5 +25,8 @@ import { site } from "../data/site";
     <a href={site.links.blog} target="_blank" rel="noreferrer">Peace, my blog <span>↗</span></a>
     <span>CV available on request</span>
   </div>
-  <p class="footer-note">© {new Date().getFullYear()} fatimahjalid. Built with care.</p>
+  <p class="footer-note">
+    © {new Date().getFullYear()} fatimahjalid
+    <span class="colophon">Set in DM Serif Display &amp; Space Mono · Built with Astro · Srinagar, Kashmir</span>
+  </p>
 </footer>

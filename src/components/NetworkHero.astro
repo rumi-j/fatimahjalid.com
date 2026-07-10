@@ -1,0 +1,239 @@
+---
+// The showpiece: a girih strap lattice doubling as a catalytic reaction
+// network. All geometry is generated at build time and ships as static SVG —
+// the no-JS fallback is this exact markup. CSS supplies the ambient motion;
+// hero.ts adds pointer light, and only when .reveal-on is set.
+import { Picture } from "astro:assets";
+import { octagonSquareLattice, pathway, starPath } from "../lib/girih";
+import { site } from "../data/site";
+import ArchFrame from "./girih/ArchFrame.astro";
+import GirihField from "./girih/GirihField.astro";
+import portrait from "../assets/fatima-jalid-portrait.jpg";
+
+const CELL = 150;
+const COLS = 8;
+const ROWS = 6;
+const lattice = octagonSquareLattice(COLS, ROWS, CELL);
+
+// Deterministically pick the first seeded walk that stays in the open
+// center of the hero — clear of the portrait column and the caption row.
+const inRegion = (p: { x: number; y: number }) =>
+  p.x >= CELL * 1.6 && p.x <= CELL * 5.2 && p.y >= CELL * 0.7 && p.y <= CELL * 4.6;
+let walk = pathway(lattice, 1, 8);
+for (let seed = 1; seed < 400; seed++) {
+  const candidate = pathway(lattice, seed, 8);
+  if (candidate.points.length >= 8 && candidate.points.every(inRegion)) {
+    walk = candidate;
+    break;
+  }
+}
+
+// Reaction annotations pinned to pathway nodes — the fusion made explicit.
+const annotations = [
+  { label: "CH₃CH₂OH*", point: walk.points[0] },
+  { label: "ΔG‡ 0.87 eV", point: walk.points[2] },
+  { label: "site: Ni(111)", point: walk.points[4] },
+  { label: "H₂ + *", point: walk.points[walk.points.length - 1] },
+].filter((a) => a.point);
+
+const nodeTones = ["gold", "lapis", "rust", "lapis", "gold", "lapis", "rust", "gold", "lapis"];
+const stars = [
+  { x: CELL * 2, y: CELL * 2, r: 26 },
+  { x: CELL * 5, y: CELL * 4, r: 34 },
+  { x: CELL * 7, y: CELL * 1, r: 22 },
+];
+const width = COLS * CELL;
+const height = ROWS * CELL;
+---
+
+<section class="network-hero" aria-label="Introduction">
+  <GirihField />
+  <svg
+    class="hero-lattice"
+    viewBox={`0 0 ${width} ${height}`}
+    preserveAspectRatio="xMidYMid slice"
+    role="img"
+    focusable="false"
+  >
+    <title>A girih star lattice doubling as a catalytic reaction network</title>
+    <desc>
+      Interlaced Islamic geometric strapwork whose intersections carry the nodes and pathways of a
+      surface reaction network.
+    </desc>
+    <defs>
+      <linearGradient id="pathway-grad" gradientUnits="userSpaceOnUse"
+        x1={walk.points[0]?.x} y1={walk.points[0]?.y}
+        x2={walk.points[walk.points.length - 1]?.x} y2={walk.points[walk.points.length - 1]?.y}>
+        <stop offset="0" stop-color="var(--lapis)" />
+        <stop offset="1" stop-color="var(--gold)" />
+      </linearGradient>
+    </defs>
+    <g class="lattice-straps">
+      {lattice.edges.map((e) => <line x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />)}
+    </g>
+    <g class="lattice-stars">
+      {stars.map((s) => <path d={starPath(s.x, s.y, s.r)} />)}
+    </g>
+    <path class="reaction-pathway" d={walk.d} pathLength="1" style={`offset-path: path("${walk.d}")`} />
+    <g aria-hidden="true">
+      {walk.points.map((p, i) => (
+        <circle class={`net-node tone-${nodeTones[i % nodeTones.length]}`} cx={p.x} cy={p.y} r={i === 0 || i === walk.points.length - 1 ? 7 : 4.5} style={`animation-delay: ${i * 0.55}s`} />
+      ))}
+      <circle class="species species-a" r="5" style={`offset-path: path("${walk.d}")`} />
+      <circle class="species species-b" r="3.5" style={`offset-path: path("${walk.d}")`} />
+    </g>
+    <g class="net-annotations" aria-hidden="true">
+      {annotations.map((a) => {
+        // Anchor right-of-node normally; flip left near the portrait column.
+        const flip = a.point.x > CELL * 4;
+        return (
+          <text
+            x={flip ? a.point.x - 14 : a.point.x + 14}
+            y={a.point.y - 12}
+            text-anchor={flip ? "end" : "start"}
+          >
+            {a.label}
+          </text>
+        );
+      })}
+      <text class="folio-caption" x={20} y={height - 26}>folio 01 — surface reactions, rendered as strapwork</text>
+    </g>
+  </svg>
+  <div class="hero-light" aria-hidden="true"></div>
+
+  <div class="hero-inner section-shell">
+    <div class="hero-copy">
+      <p class="eyebrow hero-inscription">{site.subtitle}</p>
+      <h1>Catalysis with <em>purpose.</em></h1>
+      <p class="hero-lede">
+        I am <strong>{site.name}</strong>, {site.role} in the {site.department} at
+        {site.institute}. My work uses modelling and molecular insight to ask how chemistry
+        can serve a more sustainable future.
+      </p>
+      <div class="button-row">
+        <a class="button" href="/research">Explore my research</a>
+        <a class="button button-outline" href="/teaching">For students</a>
+      </div>
+    </div>
+    <figure class="portrait-frame hero-portrait">
+      <ArchFrame>
+        <Picture
+          src={portrait}
+          formats={["avif", "webp"]}
+          widths={[420, 640, 900, 1002]}
+          sizes="(max-width: 760px) 88vw, 32vw"
+          alt="Portrait of Dr. Fatima Jalid"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </ArchFrame>
+      <figcaption>
+        <span>folio 01</span>
+        <p>Assistant Professor · NIT Srinagar</p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script src="../scripts/hero.ts"></script>
+
+<style define:vars={{ heroW: width, heroH: height }}>
+  .network-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(48px, 6vw, 88px) clamp(56px, 7vw, 96px);
+  }
+  .hero-lattice {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    mask-image: linear-gradient(100deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.55) 40%, black 75%);
+    -webkit-mask-image: linear-gradient(100deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.55) 40%, black 75%);
+  }
+  .lattice-straps line { stroke: var(--line); stroke-width: 1; }
+  .lattice-stars path { fill: none; stroke: var(--line-gold); stroke-width: 1.2; }
+  .reaction-pathway {
+    fill: none;
+    stroke: url(#pathway-grad);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .net-node { opacity: 0.75; transform-box: fill-box; transform-origin: center; }
+  .tone-gold { fill: var(--gold); }
+  .tone-lapis { fill: var(--lapis); }
+  .tone-rust { fill: var(--rust); }
+  .species { fill: var(--lapis); opacity: 0; offset-rotate: 0deg; }
+  .species-b { fill: var(--gold); }
+  .net-annotations text {
+    fill: var(--lapis);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+  .net-annotations .folio-caption { fill: var(--ink-soft); opacity: 0.75; }
+
+  /* Pointer light — hero.ts feeds --mx/--my; invisible until then. */
+  .hero-light {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(217, 180, 92, 0.22),
+      rgba(28, 78, 102, 0.08) 55%,
+      transparent 75%
+    );
+    transition: opacity 0.6s ease;
+  }
+  .network-hero.lit .hero-light { opacity: 1; }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+    align-items: start;
+    gap: 64px;
+  }
+  .hero-copy h1 { max-width: 730px; margin: 15px 0 25px; }
+  .hero-inscription { color: var(--gold); }
+  .hero-portrait :global(figcaption span) { font-family: var(--mono); }
+
+  /* Ambient motion — pure CSS, so it works without JS, and is fully
+     disabled under prefers-reduced-motion (base state = fully drawn). */
+  @media (prefers-reduced-motion: no-preference) {
+    .reaction-pathway {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: hero-edge-draw 7s cubic-bezier(0.4, 0.1, 0.2, 1) 0.4s forwards;
+    }
+    .net-node { animation: hero-node-pulse 5s ease-in-out infinite; }
+    .species { animation: hero-travel 11s linear 3s infinite; }
+    .species-b { animation-delay: 7.5s; animation-duration: 13s; }
+  }
+  @keyframes hero-edge-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes hero-node-pulse {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.35); }
+  }
+  @keyframes hero-travel {
+    0% { offset-distance: 0%; opacity: 0; }
+    6% { opacity: 0.9; }
+    94% { opacity: 0.9; }
+    100% { offset-distance: 100%; opacity: 0; }
+  }
+
+  @media (max-width: 760px) {
+    .hero-inner { display: block; }
+    .hero-portrait { max-width: 400px; margin-top: 55px; }
+    .hero-lattice {
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.6) 100%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.6) 100%);
+    }
+    .net-annotations { display: none; }
+  }
+</style>
