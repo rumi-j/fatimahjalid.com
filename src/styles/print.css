@@ -1,0 +1,63 @@
+/* Print: the publications page becomes a citable reference document. */
+@media print {
+  .site-header,
+  .site-footer,
+  .pub-controls,
+  .pub-actions,
+  .result-count,
+  .skip-link,
+  .page-intro-rule,
+  .button-row {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 10.5pt;
+    line-height: 1.5;
+  }
+
+  main {
+    width: auto;
+  }
+
+  .page-intro {
+    padding: 0 0 18pt;
+  }
+
+  h1 {
+    font-size: 22pt;
+  }
+
+  .publication-item {
+    break-inside: avoid;
+    padding-left: 28pt;
+  }
+
+  .publication-item h3 {
+    font-size: 12pt;
+  }
+
+  .pub-year {
+    position: static;
+    font-size: 15pt;
+  }
+
+  .pub-year-group {
+    grid-template-columns: 60pt 1fr;
+  }
+
+  /* Print the DOI/reference URL after each entry link. */
+  .publication-item .text-link[href]::after {
+    content: " — " attr(href);
+    font-size: 8.5pt;
+    color: #444;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  @page {
+    margin: 2cm;
+  }
+}

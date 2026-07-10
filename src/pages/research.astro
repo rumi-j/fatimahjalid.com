@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
+import MicroNetwork from "../components/MicroNetwork.astro";
 import { researchAreas, sponsoredProject } from "../data/research";
 import { accomplishments, education, invitedTalks, memberships } from "../data/professional";
 
@@ -13,14 +14,18 @@ const sortedAccomplishments = [...accomplishments].sort((a, b) => Number(b.year)
 >
   <PageIntro
     eyebrow="Research"
+    folio="03"
     title="Mechanisms matter."
     intro="I use microkinetic modelling, computational catalysis, and reaction engineering to understand what happens at catalytic surfaces - and how that understanding can guide more sustainable chemical pathways."
   />
 
-  <section class="section-shell research-grid">
+  <section class="section-shell research-grid" data-reveal-stagger>
     {researchAreas.map((area, index) => (
       <article class:list={["research-card", index === 0 && "featured"]}>
-        <span class="card-number">{area.number}</span>
+        <div class="card-head">
+          <span class="card-number">{area.number}</span>
+          <MicroNetwork seed={index * 13 + 5} class="card-network" />
+        </div>
         <p class="eyebrow">{area.label}</p>
         <h2>{area.title}</h2>
         <p>{area.summary}</p>
