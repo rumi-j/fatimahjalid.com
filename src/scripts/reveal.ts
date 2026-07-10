@@ -8,6 +8,7 @@ if (root.classList.contains("reveal-on")) {
   const targets = new Set<Element>([
     ...document.querySelectorAll("main > section"),
     ...document.querySelectorAll("[data-reveal]"),
+    ...document.querySelectorAll("[data-reveal-stagger]"),
   ]);
 
   // Stagger groups: index children so CSS can delay each via --i.
