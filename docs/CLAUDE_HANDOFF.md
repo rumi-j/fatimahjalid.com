@@ -15,7 +15,8 @@ The site is a multi-page academic and personal portfolio for Dr. Fatima Jalid.
 
 - `src/pages/`: page routes
 - `src/layouts/BaseLayout.astro`: shared metadata, header, footer shell
-- `src/components/`: reusable header, footer, page intro, and dev-only font switcher components
+- `src/components/`: header, footer, page intro, the NetworkHero showpiece, and the girih ornament kit (`src/components/girih/`)
+- `src/lib/girih.ts`: build-time geometry engine (star paths, octagon-square lattice, seeded pathways)
 - `src/data/`: all editable content
 - `src/styles/global.css`: full visual system
 - `public/`: assets that deploy publicly

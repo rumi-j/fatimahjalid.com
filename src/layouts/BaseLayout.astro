@@ -1,11 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import FontSwitcher from "../components/FontSwitcher.astro";
-import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { site } from "../data/site";
 import "../styles/global.css";
-import "../styles/themes.css";
 import serifWoff2 from "@fontsource/dm-serif-display/files/dm-serif-display-latin-400-normal.woff2?url";
 import sansWoff2 from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
 
@@ -79,15 +76,6 @@ const jsonLdBlocks = [
         }
       } catch (e) {}
     </script>
-    {import.meta.env.DEV && (
-      <script is:inline>
-        // Dev-only: apply the saved design direction before paint (no flash).
-        try {
-          var t = localStorage.getItem("dev-theme");
-          if (t) document.documentElement.dataset.theme = t;
-        } catch (e) {}
-      </script>
-    )}
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
@@ -111,8 +99,12 @@ const jsonLdBlocks = [
     <Header />
     <main id="main"><slot /></main>
     <Footer />
-    {import.meta.env.DEV && <FontSwitcher />}
-    {import.meta.env.DEV && <ThemeSwitcher />}
     <script src="../scripts/reveal.ts"></script>
+    <script is:inline>
+      console.info(
+        "%c✦ Sanobar bagh mein azad bhi hai, pa-ba-gil bhi hai — Iqbal\n  curious? fatima@nitsri.ac.in",
+        "font-family: monospace; color: #b8892e;",
+      );
+    </script>
   </body>
 </html>

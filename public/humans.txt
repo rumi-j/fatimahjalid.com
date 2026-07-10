@@ -1,0 +1,13 @@
+/* SITE */
+Site: fatimahjalid.com
+For: Dr. Fatima Jalid — Assistant Professor, Chemical Engineering, NIT Srinagar
+Location: Hazratbal, Srinagar, Kashmir
+
+/* DESIGN */
+Concept: Girih × Molecular — Islamic geometric strapwork and catalytic
+reaction networks are both the mathematics of surfaces.
+Type: DM Serif Display, DM Sans, Space Mono, Noto Nastaliq Urdu
+Built with: Astro, hand-written CSS, no frameworks
+
+/* THANKS */
+To Iqbal, for the verses. To every student who brings a question worth following.
