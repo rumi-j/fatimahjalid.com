@@ -6,7 +6,7 @@ Location: Hazratbal, Srinagar, Kashmir
 /* DESIGN */
 Concept: Girih × Molecular — Islamic geometric strapwork and catalytic
 reaction networks are both the mathematics of surfaces.
-Type: DM Serif Display, DM Sans, Space Mono, Noto Nastaliq Urdu
+Type: DM Serif Display, DM Sans, Alegreya Sans SC, Noto Nastaliq Urdu
 Built with: Astro, hand-written CSS, no frameworks
 
 /* THANKS */

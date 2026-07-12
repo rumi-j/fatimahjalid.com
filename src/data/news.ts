@@ -15,6 +15,14 @@ export type NewsItem = {
 
 export const news: NewsItem[] = [
   {
+    date: "Jun 2026",
+    year: 2026,
+    category: "Award",
+    title: "Gold at the IEI J&K Women in Engineering Awards 2026",
+    summary: "Conferred the Emerging Woman Engineer Award (Gold, first rank) by the Institution of Engineers (India), J&K State Centre.",
+    url: "https://kashmirlife.net/iei-jammu-kashmir-felicitates-outstanding-women-engineers-440893/",
+  },
+  {
     date: "2026",
     year: 2026,
     category: "Feature",

@@ -1,5 +1,13 @@
 export const accomplishments = [
   {
+    year: "2026",
+    title: "Emerging Woman Engineer Award (Gold)",
+    issuer: "The Institution of Engineers (India), J&K State Centre",
+    summary:
+      "Conferred the Gold Award, securing first rank in the Emerging Woman Engineer category at the IEI J&K Women in Engineering Awards 2026.",
+    url: "https://www.greaterkashmir.com/education/nit-srinagars-fatima-jalid-wins-gold-janani-l-bags-silver-at-iei-awards-2026-12070084",
+  },
+  {
     year: "2025",
     title: "She Is - Women in Chemistry",
     issuer: "Beyond Black, Office of the Principal Scientific Adviser, and Royal Society of Chemistry",
@@ -39,6 +47,7 @@ export const accomplishments = [
     issuer: "Presented by the Honorable President of India",
     summary:
       "For an alternative technology to produce biomass-based food-grade flavours, fuels, and value-added chemicals.",
+    url: "https://gyti.techpedia.in/award-list-2018.php",
   },
   {
     year: "2015",

@@ -37,7 +37,8 @@
   /* type */
   --serif: "DM Serif Display", Georgia, "Times New Roman", serif;
   --sans: "DM Sans Variable", "DM Sans", Arial, sans-serif;
-  --mono: "Space Mono", "Courier New", monospace;
+  /* label/annotation voice (token keeps its legacy --mono name) */
+  --mono: "Alegreya Sans SC", "DM Sans", Arial, sans-serif;
   --urdu: "Noto Nastaliq Urdu", serif;
 
   --text-display: clamp(3.4rem, 7.6vw, 7.2rem);
