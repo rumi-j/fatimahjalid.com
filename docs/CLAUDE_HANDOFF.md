@@ -47,6 +47,11 @@ repository.
 - Courses and course projects: `src/data/teaching.ts`
 - Books, Iqbal, writing, hobbies: `src/data/personal.ts`
 
+## Repository
+
+GitHub remote `origin`: `https://github.com/rumi-j/fatimahjalid.com` (private, default
+branch `main`, GitHub account `rumi-j`, HTTPS auth through the `gh` CLI).
+
 ## Deployment notes
 
 The public output is created by `npm run build` in `dist/`. Netlify is configured

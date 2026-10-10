@@ -49,6 +49,9 @@ Netlify reads `netlify.toml` (build `npm run build`, publish `dist/`, 301 from `
 
 When link-checking: RSC and Wiley DOI pages return 403 to non-browser clients and LinkedIn returns 429. These are bot blocks, not broken links.
 
-## Git
+## Git and GitHub
 
-Local identity is set to Fatima Jalid <fatima@nitsri.ac.in>. Commit subjects on the current design use a `[girih]` prefix.
+- Remote `origin`: https://github.com/rumi-j/fatimahjalid.com (private; GitHub account `rumi-j`; default branch `main`)
+- Auth: `gh` CLI over HTTPS (`gh auth status` to confirm). No SSH key is registered for this Mac.
+- Local identity is set to Fatima Jalid <fatima@nitsri.ac.in>. Commit subjects on the current design use a `[girih]` prefix.
+- Netlify deploys from this repo's `main` once connected (see Deployment).

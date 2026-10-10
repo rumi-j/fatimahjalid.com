@@ -21,8 +21,8 @@ http://127.0.0.1:8001/
 
 ## Netlify
 
-1. Push the project to a GitHub repository.
-2. Import the repository in Netlify.
+1. Repository: `https://github.com/rumi-j/fatimahjalid.com` (private, `main`). Done 10 Oct 2026.
+2. Import that repository in Netlify (sign in with the `rumi-j` GitHub account).
 3. Use the included `netlify.toml`.
 4. Build command: `npm run build`.
 5. Publish directory: `dist`.

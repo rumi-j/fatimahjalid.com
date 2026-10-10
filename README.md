@@ -52,9 +52,15 @@ The first release intentionally shows a reserved gallery panel without empty
 image placeholders. Add approved photography assets under `public/images/` and
 create gallery entries when a set of images is ready.
 
+## Repository
+
+- GitHub: <https://github.com/rumi-j/fatimahjalid.com> (private, account `rumi-j`)
+- Default branch: `main`
+- Pushes go over HTTPS via the `gh` CLI.
+
 ## Netlify deployment
 
-1. Create a GitHub repository and push this project.
+1. Repository is on GitHub (see above).
 2. Import the repository in Netlify.
 3. Netlify reads the included `netlify.toml`, runs `npm run build`, and serves
    `dist/`.
