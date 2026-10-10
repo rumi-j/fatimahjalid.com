@@ -120,8 +120,8 @@ export const publications: Publication[] = [
     title:
       "First-Principle Microkinetic Modeling of Ethanol Dehydrogenation on Metal Catalyst Surfaces in Non-oxidative Environment: Design of Bimetallic Alloys",
     venue: "Topics in Catalysis",
-    details: "61, 1820-183",
-    url: "https://doi.org/10.1007/s11244-018-1003-0",
+    details: "61, 1820-1831",
+    url: "https://doi.org/10.1007/s11244-018-1028-9",
     note: "Equal first-author contribution",
     tags: ["ethanol", "microkinetics"],
   },
