@@ -337,8 +337,8 @@ em { color: var(--rust); font-style: italic; }
   .site-header { backdrop-filter: none; }
   .menu-toggle { display: grid; width: 45px; height: 45px; place-content: center; gap: 5px; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; }
   .menu-toggle span:not(.sr-only) { display: block; width: 18px; height: 2px; background: var(--ink); }
-  .primary-nav { position: fixed; z-index: 50; inset: 0; display: flex; width: 100vw; height: 100vh; align-items: start; flex-direction: column; gap: 0; padding: 28px 6vw; background: var(--ink-deep); color: white; opacity: 0; pointer-events: none; transform: translateX(100%); transition: opacity .25s ease, transform .3s ease; }
-  .primary-nav.open { opacity: 1; pointer-events: auto; transform: translateX(0); }
+  .primary-nav { position: fixed; z-index: 50; inset: 0; display: flex; width: 100vw; height: 100vh; align-items: start; flex-direction: column; gap: 0; padding: 28px 6vw; background: var(--ink-deep); color: white; opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(100%); transition: opacity .25s ease, transform .3s ease, visibility 0s linear .3s; }
+  .primary-nav.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); transition-delay: 0s; }
   .primary-nav a { width: 100%; padding: 11px 0; font-family: var(--serif); font-size: clamp(2rem,6vw,3.2rem); font-weight: 500; letter-spacing: -.04em; text-transform: none; }
   .primary-nav .contact-link { padding: 11px 0; background: transparent; color: white; }
   .primary-nav a::after { display: none; }
@@ -352,7 +352,7 @@ em { color: var(--rust); font-style: italic; }
 }
 
 @media (max-width: 760px) {
-  h1 { font-size: clamp(4.1rem,17vw,6rem); }
+  h1 { font-size: clamp(3rem,17vw,6rem); }
   .hero { display: block; min-height: auto; padding-block: 72px; }
   .hero-lede { font-size: 1rem; }
   .portrait-frame { max-width: 410px; margin-top: 55px; }
@@ -363,6 +363,7 @@ em { color: var(--rust); font-style: italic; }
   .project-feature h2 { margin-bottom: 25px; }
   .project-meta { border-top: 1px solid rgba(255,255,255,.24); border-left: 0; padding-top: 15px; padding-left: 0; }
   .highlight-grid, .research-grid, .course-grid, .course-project-grid, .iqbal-spread, .tile-band, .writing-grid, .hobby-grid { grid-template-columns: 1fr; }
+  .course-card-empty { display: none; }
   .manuscript-spread { display: block; }
   .manuscript-spread .verse-panel { margin-top: 40px; }
   .highlight-card { min-height: 215px; }

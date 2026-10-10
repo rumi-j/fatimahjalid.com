@@ -44,9 +44,15 @@ const isActive = (href: string) =>
   const nav = document.querySelector<HTMLElement>(".primary-nav");
 
   const setMenu = (open: boolean) => {
-    nav?.classList.toggle("open", open);
+    if (!nav || nav.classList.contains("open") === open) return;
+    const focusWasInside = nav.contains(document.activeElement);
+    nav.classList.toggle("open", open);
     document.body.classList.toggle("menu-open", open);
     toggle?.setAttribute("aria-expanded", String(open));
+    // Move focus into the menu when it opens, and back to the toggle when it closes,
+    // so keyboard users never land on an invisible control.
+    if (open) close?.focus();
+    else if (focusWasInside) toggle?.focus();
   };
 
   toggle?.addEventListener("click", () => setMenu(true));

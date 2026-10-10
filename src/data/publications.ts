@@ -16,10 +16,10 @@ export const publications: Publication[] = [
     year: 2025,
     authors: "Mohammad Zakariya Farooqi, Fatima Jalid",
     title:
-      "Microkinetic Modelling Derived Insights into Water-Gas Catalysis - Towards Unravelling Active Transition Metal Based Bimetallic Alloys",
+      "Microkinetic Modelling-Driven Insights into Water-Gas Shift Catalysis - Towards Unravelling Active Transition Metal-Based Bimetallic Alloys",
     venue: "The Canadian Journal of Chemical Engineering",
-    details: "2025, 1",
-    url: "https://scholar.google.com/scholar?q=Microkinetic+Modelling+Derived+Insights+into+Water-Gas+Catalysis+Towards+Unravelling+Active+Transition+Metal+Based+Bimetallic+Alloys",
+    details: "104, 1403-1419",
+    url: "https://doi.org/10.1002/cjce.70091",
     tags: ["microkinetics", "alloys"],
   },
   {
