@@ -7,6 +7,12 @@ coding assistant.
 
 `/Users/fatimahjalid/Documents/Projects/Personal Website`
 
+## Live site and accounts
+
+- Production: <https://fatimahjalid.com> (Netlify project `timely-phoenix-a25d4c`)
+- Source: <https://github.com/rumi-j/fatimahjalid.com> (private, branch `main`)
+- Domain registrar: Netlify (Name.com), renews 10 October 2027
+
 ## Public deployment resources
 
 These files are part of the website and are copied into `dist/` by `npm run build`.

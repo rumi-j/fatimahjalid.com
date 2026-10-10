@@ -8,8 +8,10 @@ Open this folder as the project root:
 
 ## What this is
 
-An Astro static website for `fatimahjalid.com`, designed for Netlify deployment.
-The site is a multi-page academic and personal portfolio for Dr. Fatima Jalid.
+An Astro static website live at <https://fatimahjalid.com>, hosted on Netlify
+and deployed automatically from `main` on GitHub
+(<https://github.com/rumi-j/fatimahjalid.com>). The site is a multi-page
+academic and personal portfolio for Dr. Fatima Jalid.
 
 ## Current architecture
 
@@ -54,10 +56,11 @@ branch `main`, GitHub account `rumi-j`, HTTPS auth through the `gh` CLI).
 
 ## Deployment notes
 
-The public output is created by `npm run build` in `dist/`. Netlify is configured
-through `netlify.toml`.
+The site is live. Netlify builds `main` using `netlify.toml`, so pushing to
+`main` is the deploy; nothing else is required. `docs/DEPLOYMENT_CHECKLIST.md`
+has the post-deploy checks and the launch record.
 
-Before launch, verify:
+Before pushing, verify:
 
 - no private files in `public/` or `dist/`
 - `npm run check` passes

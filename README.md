@@ -1,8 +1,9 @@
 # fatimahjalid.com
 
-Deployment-ready academic and personal website for Dr. Fatima Jalid. The site is
-an Astro static build designed for Netlify and a custom `fatimahjalid.com`
-domain.
+Academic and personal website for Dr. Fatima Jalid, live at
+<https://fatimahjalid.com>. The site is an Astro static build hosted on
+Netlify and deployed automatically from the `main` branch of
+<https://github.com/rumi-j/fatimahjalid.com>.
 
 ## Run locally
 
@@ -58,15 +59,21 @@ create gallery entries when a set of images is ready.
 - Default branch: `main`
 - Pushes go over HTTPS via the `gh` CLI.
 
-## Netlify deployment
+## Hosting and deployment (live since 10 October 2026)
 
-1. Repository is on GitHub (see above).
-2. Import the repository in Netlify.
-3. Netlify reads the included `netlify.toml`, runs `npm run build`, and serves
-   `dist/`.
-4. Check that `fatimahjalid.com` is available, register it, and add it as the
-   Netlify custom domain.
-5. Point DNS to Netlify and enable Netlify-managed HTTPS.
-6. Verify the `www.fatimahjalid.com` redirect and production links.
+- **Hosting:** Netlify project `timely-phoenix-a25d4c` on the free plan.
+  Netlify reads `netlify.toml`, runs `npm run build`, and serves `dist/`.
+- **Deploys:** every push to `main` on GitHub rebuilds and publishes the site
+  in about half a minute. There is no manual deploy step.
+- **Domain:** `fatimahjalid.com` was registered through Netlify (registrar
+  Name.com, DNS managed by Netlify). It renews on 10 October 2027 with
+  auto-renew on. `www.fatimahjalid.com` redirects to the bare domain.
+- **HTTPS:** Let's Encrypt certificate covering the bare domain and `www`,
+  renewed automatically by Netlify.
+- The old `timely-phoenix-a25d4c.netlify.app` address still resolves and is
+  harmless; canonical URLs point at `fatimahjalid.com`.
+
+To publish a content change: edit the relevant file in `src/data/`, run
+`npm run check && npm run build` locally, commit, and `git push origin main`.
 
 The site intentionally launches without visitor analytics.

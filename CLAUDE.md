@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Dr. Fatima Jalid (Chemical Engineering, NIT Srinagar). Deploys to Netlify via `netlify.toml`. No tests, no analytics, no server runtime.
+Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Dr. Fatima Jalid (Chemical Engineering, NIT Srinagar). Live at https://fatimahjalid.com since 10 Oct 2026; Netlify auto-deploys every push to `main` via `netlify.toml`. No tests, no analytics, no server runtime.
 
 ## Commands
 
@@ -15,7 +15,7 @@ npm run build    # static output to dist/ (also generates sitemap-index.xml)
 npm run preview  # serve dist/ on :4322
 ```
 
-Pre-launch verification is `npm run check && npm run build`, then confirm the seven routes render: `/`, `/about`, `/research`, `/publications`, `/teaching`, `/personal`, `/404`.
+Pre-push verification is `npm run check && npm run build`, then confirm the seven routes render: `/`, `/about`, `/research`, `/publications`, `/teaching`, `/personal`, `/404`.
 
 ## Privacy rule (hard)
 
@@ -45,7 +45,7 @@ Earlier Editorial, Mihrab, and Modern theme skins plus the Theme/Font switchers 
 
 ## Deployment
 
-Netlify reads `netlify.toml` (build `npm run build`, publish `dist/`, 301 from `www` to apex). `astro.config.mjs` sets `site: "https://fatimahjalid.com"`, which drives canonical URLs and the sitemap. `docs/DEPLOYMENT_CHECKLIST.md` is the launch sequence; `docs/RESOURCE_MANIFEST.md` lists which public assets exist and which external links are intentionally not bundled.
+The site is live. Netlify project `timely-phoenix-a25d4c` (free plan) builds `main` with `netlify.toml` (build `npm run build`, publish `dist/`, 301 from `www` to apex); a push to `main` is the deploy and takes about 25 s. `fatimahjalid.com` was bought through Netlify (Netlify DNS, Let's Encrypt HTTPS, renews 10 Oct 2027). `astro.config.mjs` sets `site: "https://fatimahjalid.com"`, which drives canonical URLs and the sitemap. `docs/DEPLOYMENT_CHECKLIST.md` has the post-deploy checks and launch record; `docs/RESOURCE_MANIFEST.md` lists which public assets exist and which external links are intentionally not bundled.
 
 When link-checking: RSC and Wiley DOI pages return 403 to non-browser clients and LinkedIn returns 429. These are bot blocks, not broken links.
 
@@ -54,4 +54,4 @@ When link-checking: RSC and Wiley DOI pages return 403 to non-browser clients an
 - Remote `origin`: https://github.com/rumi-j/fatimahjalid.com (private; GitHub account `rumi-j`; default branch `main`)
 - Auth: `gh` CLI over HTTPS (`gh auth status` to confirm). No SSH key is registered for this Mac.
 - Local identity is set to Fatima Jalid <fatima@nitsri.ac.in>. Commit subjects on the current design use a `[girih]` prefix.
-- Netlify deploys from this repo's `main` once connected (see Deployment).
+- Netlify deploys from this repo's `main` automatically (see Deployment). Pushing is publishing, so run check and build first.
