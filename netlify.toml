@@ -7,3 +7,16 @@
   to = "https://fatimahjalid.com/:splat"
   status = 301
   force = true
+
+# Hashed build assets never change at a given URL, so let browsers keep them.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"

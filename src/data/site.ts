@@ -22,10 +22,10 @@ export const site = {
 
 export const nav = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/research", label: "Research" },
-  { href: "/publications", label: "Publications" },
-  { href: "/teaching", label: "Teaching" },
-  { href: "/personal", label: "Personal" },
+  { href: "/about/", label: "About" },
+  { href: "/research/", label: "Research" },
+  { href: "/publications/", label: "Publications" },
+  { href: "/teaching/", label: "Teaching" },
+  { href: "/personal/", label: "Personal" },
   { href: "#contact", label: "Contact" },
 ];

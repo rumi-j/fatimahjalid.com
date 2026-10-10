@@ -92,14 +92,14 @@ const structuredData = {
         <input class="pub-search" type="search" placeholder="Search by title, author, or venue…" autocomplete="off" />
       </label>
       <div class="filter-row" role="group" aria-label="Filter by type">
-        <button class="filter active" type="button" data-filter="all">All</button>
-        <button class="filter" type="button" data-filter="journal">Journal articles</button>
-        <button class="filter" type="button" data-filter="chapter">Book chapters</button>
-        <button class="filter" type="button" data-filter="patent">Patent</button>
+        <button class="filter active" type="button" aria-pressed="true" data-filter="all">All</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="journal">Journal articles</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="chapter">Book chapters</button>
+        <button class="filter" type="button" aria-pressed="false" data-filter="patent">Patent</button>
       </div>
       <div class="topic-row" role="group" aria-label="Filter by topic">
         {allTags.map((tag) => (
-          <button class="topic" type="button" data-topic={tag}>{tag}</button>
+          <button class="topic" type="button" aria-pressed="false" data-topic={tag}>{tag}</button>
         ))}
       </div>
     </div>
@@ -175,7 +175,10 @@ const structuredData = {
       typeButtons.forEach((button) =>
         button.addEventListener("click", () => {
           typeFilter = button.dataset.filter ?? "all";
-          typeButtons.forEach((other) => other.classList.toggle("active", other === button));
+          typeButtons.forEach((other) => {
+            other.classList.toggle("active", other === button);
+            other.setAttribute("aria-pressed", String(other === button));
+          });
           apply();
         }),
       );
@@ -185,7 +188,8 @@ const structuredData = {
           const topic = button.dataset.topic ?? "";
           if (activeTopics.has(topic)) activeTopics.delete(topic);
           else activeTopics.add(topic);
-          button.classList.toggle("active");
+          const pressed = button.classList.toggle("active");
+          button.setAttribute("aria-pressed", String(pressed));
           apply();
         }),
       );

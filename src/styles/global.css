@@ -7,6 +7,7 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.7; font-size: 1.0625rem; }
 a { color: inherit; text-decoration: none; }
+[id] { scroll-margin-top: 90px; } /* keep anchor targets clear of the sticky header */
 button { font: inherit; }
 img { display: block; max-width: 100%; }
 h1, h2, h3, p, figure, blockquote { margin-top: 0; }
@@ -33,7 +34,7 @@ em { color: var(--rust); font-style: italic; }
 .brand-mark svg { transition: transform .5s cubic-bezier(.2,.6,.2,1); }
 .brand:hover .brand-mark svg { transform: rotate(45deg); }
 .brand-copy strong, .brand-copy small { display: block; }
-.brand-copy small { margin-top: 5px; color: var(--ink-soft); font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; }
+.brand-copy small { margin-top: 5px; color: var(--ink-soft); font-family: var(--mono); font-size: .69rem; letter-spacing: .08em; text-transform: uppercase; }
 .primary-nav { display: flex; align-items: center; gap: 27px; font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
 .primary-nav a { position: relative; }
 .primary-nav a::after { position: absolute; right: 0; bottom: -7px; left: 0; height: 1px; background: var(--gold); content: ""; transform: scaleX(0); transform-origin: right; transition: transform .25s ease; }
@@ -192,7 +193,7 @@ em { color: var(--rust); font-style: italic; }
 .pub-year::after { content: ""; display: block; width: 44px; height: 2px; margin-top: 10px; background: var(--line-gold); }
 .pub-year-items { display: flex; flex-direction: column; gap: 28px; }
 .publication-item { display: block; position: relative; padding-left: 44px; counter-increment: pub-index; }
-.publication-item::before { content: counter(pub-index, decimal-leading-zero); position: absolute; left: 0; top: 2px; color: var(--gold); font-family: var(--serif); font-size: 1.05rem; }
+.publication-item::before { content: counter(pub-index, decimal-leading-zero); position: absolute; left: 0; top: 2px; color: var(--gold-text); font-family: var(--serif); font-size: 1.05rem; }
 .publication-meta, .authors, .publication-item > p { margin-bottom: 5px; color: var(--ink-soft); font-size: .88rem; }
 .publication-meta { color: var(--lapis) !important; font-family: var(--mono); letter-spacing: .05em; text-transform: uppercase; font-size: .68rem; }
 .publication-item h3 { max-width: 970px; margin-bottom: 7px; font-family: var(--serif); font-size: 1.45rem; font-weight: 400; letter-spacing: -.015em; }
@@ -262,7 +263,8 @@ em { color: var(--rust); font-style: italic; }
 .writing-heading h2 { margin-bottom: 0; color: white; }
 .writing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 35px; border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.15); }
 .writing-grid article { min-height: 255px; padding: 20px; background: var(--ink); }
-.writing-grid span { color: var(--gold); font-family: var(--serif); font-size: 1.35rem; }
+.writing-grid span { color: var(--gold-bright); font-family: var(--serif); font-size: 1.35rem; }
+.writing-section .text-link { color: var(--gold-bright); } /* rust is 2.47:1 on the ink band */
 .writing-grid h3 { margin: 50px 0 8px; color: white; font-family: var(--serif); font-size: 1.5rem; }
 .writing-grid p { color: rgba(255,255,255,.68); font-size: .9rem; }
 .photography-section { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; }
@@ -344,7 +346,7 @@ em { color: var(--rust); font-style: italic; }
   .primary-nav .contact-link { padding: 11px 0; background: transparent; color: white; }
   .primary-nav a::after { display: none; }
   .menu-close, .nav-label, .nav-foot { display: block; }
-  .menu-close { align-self: end; margin-bottom: 22px; border: 0; background: transparent; color: var(--gold-bright); cursor: pointer; font-size: .7rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+  .menu-close { align-self: end; min-height: 24px; margin-bottom: 22px; padding: 4px 0; border: 0; background: transparent; color: var(--gold-bright); cursor: pointer; font-size: .7rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .nav-label { margin-bottom: 12px; color: var(--gold-bright); font-size: .68rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
   .nav-foot { margin-top: auto; color: rgba(255,255,255,.55); font-size: .8rem; }
   .nav-foot p { margin-bottom: 2px; }

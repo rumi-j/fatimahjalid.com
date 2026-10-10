@@ -48,6 +48,8 @@ const isActive = (href: string) =>
     const focusWasInside = nav.contains(document.activeElement);
     nav.classList.toggle("open", open);
     document.body.classList.toggle("menu-open", open);
+    // Fence keyboard and screen-reader focus inside the overlay while it is open.
+    document.querySelectorAll<HTMLElement>("main, footer").forEach((el) => el.toggleAttribute("inert", open));
     toggle?.setAttribute("aria-expanded", String(open));
     // Move focus into the menu when it opens, and back to the toggle when it closes,
     // so keyboard users never land on an invisible control.
