@@ -28,8 +28,40 @@ Open the deploy in Netlify (Deploys tab) and confirm it says Published, then
 spot-check on the live site:
 
 - the page you changed, on desktop and on a phone;
-- `https://fatimahjalid.com/sitemap-index.xml` still lists seven pages;
+- `https://fatimahjalid.com/sitemap-index.xml` still points at `sitemap-0.xml`,
+  which lists the six indexable pages (the 404 page is deliberately absent);
 - a made-up address such as `/nope` still shows the custom 404 page.
+
+If the change added a page, renamed a URL, or rewrote a page's title or
+description, also open Google Search Console, paste the page's full URL into
+URL Inspection and click **Request indexing**. Routine content edits do not
+need this; Google recrawls on its own.
+
+## Google Search Console
+
+Property: Domain property `fatimahjalid.com`, verified on 10 October 2026
+through a `google-site-verification` TXT record on the root domain in Netlify
+DNS. Signed in with the owner's Google account.
+
+- **Do not delete the TXT record.** Google rechecks it and the property loses
+  verification without it. It is harmless to the site.
+- Submitted sitemap: `https://fatimahjalid.com/sitemap-index.xml` (Search
+  Console needs the full URL, not a relative path).
+- Indexing of the homepage was requested on launch day. Expect "Couldn't
+  fetch" on the Sitemaps page and "URL is not on Google" in URL Inspection
+  until the first crawl; both are placeholders on a new property.
+
+What to look at, and how often:
+
+- **First week after launch:** Indexing → Pages should list the six URLs as
+  indexed, and Sitemaps should read Success with 6 discovered pages. If a page
+  is listed under "Not indexed", open it and read the reason before changing
+  anything.
+- **After any URL change:** URL Inspection on the new URL, then Request
+  indexing. Google's chosen canonical shown there should be the trailing-slash
+  form, matching the site's canonical tags.
+- **Monthly glance:** Performance for the queries bringing visitors, and
+  Security & Manual Actions, which should always be empty.
 
 ## Yearly
 
@@ -59,3 +91,7 @@ These are ignored by `.gitignore`.
    `https://fatimahjalid.com`, all pages 200, custom 404, PDF and social
    image served, HSTS header present, mobile navigation and publication
    filters working.
+7. Post-launch accessibility and SEO audit applied (contrast, pressed
+   states, trailing-slash links, cache and security headers, 404 noindex).
+8. Google Search Console: domain verified via Netlify DNS TXT record,
+   sitemap submitted, homepage indexing requested.
