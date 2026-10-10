@@ -65,6 +65,7 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
       <h2>Working with students.</h2>
     </div>
     <p class="group-intro">{group.intro}</p>
+    <p class="group-intro group-howto">{group.howToWrite}</p>
     <div class="group-grid">
       <div>
         <p class="eyebrow">What I look for</p>
@@ -73,7 +74,7 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
         </ul>
       </div>
       <div>
-        <p class="eyebrow">Open directions</p>
+        <p class="eyebrow">Research directions</p>
         <div class="group-directions">
           {group.openDirections.map((item) => (
             <article>

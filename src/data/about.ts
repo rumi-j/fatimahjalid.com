@@ -7,10 +7,10 @@
 
 export const about = {
   lede:
-    "I am a chemical engineer who studies how reactions actually happen at catalytic surfaces - and how that understanding can be turned toward a more responsible kind of chemistry.",
+    "I am a chemical engineer who studies how reactions actually happen at catalytic surfaces - and how that understanding can be turned toward more efficient and sustainable chemical processes.",
   narrative: [
     "My path in chemical engineering began at NIT Srinagar, where I completed my B.Tech and graduated as a gold medallist. It led me to IIT Delhi for a Ph.D., where I learned to read catalysis from the surface upward: tracing how individual elementary steps connect into reaction networks, and how that detail explains activity, selectivity, and the ways a catalyst loses its edge over time.",
-    "I have since returned to NIT Srinagar as a faculty member in the Department of Chemical Engineering. My work brings together microkinetic modelling, computational catalysis, and reaction engineering - using molecular insight and first-principles analysis to design pathways toward biorenewable chemicals and lower-carbon processes.",
+    "I am an Assistant Professor in the Department of Chemical Engineering at NIT Srinagar, where I have taught since 2016. My work brings together microkinetic modelling, computational catalysis, and reaction engineering - using molecular insight and first-principles analysis to design pathways toward biorenewable chemicals and lower-carbon processes.",
     "Alongside research, I care about teaching modelling as a way of thinking clearly: a tool for asking sharper questions rather than only producing answers. Much of what I value - attention, patience, a sense of responsibility for the work - sits behind the science as much as within it.",
   ],
   principles: [

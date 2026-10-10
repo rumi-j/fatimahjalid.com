@@ -46,12 +46,12 @@ export const news: NewsItem[] = [
     summary: "Presented at Advances in CCUS, IIT Kanpur.",
   },
   {
-    date: "2025",
+    date: "Sep 2025",
     year: 2025,
     category: "Paper",
-    title: "New paper on microkinetic insights into water-gas catalysis",
-    summary: "Published in The Canadian Journal of Chemical Engineering with M. Z. Farooqi.",
-    url: "https://scholar.google.com/citations?user=S4RnI4gAAAAJ&hl=en",
+    title: "New paper on microkinetic insights into water-gas shift catalysis",
+    summary: "Published online in The Canadian Journal of Chemical Engineering with M. Z. Farooqi; in print in volume 104 (2026).",
+    url: "https://doi.org/10.1002/cjce.70091",
   },
   {
     date: "2024",

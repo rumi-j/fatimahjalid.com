@@ -18,11 +18,13 @@ export const group = {
   intro:
     "I work with students who want to understand catalysis deeply - through modelling, simulation, and careful reasoning about what happens on a surface. If that sounds like you, I'd like to hear from you.",
   lookingFor: [
-    "Curiosity that survives a hard problem",
-    "Comfort with the fundamentals - thermodynamics, kinetics, and a little coding",
-    "Care in how results are checked and explained",
-    "Patience, because modelling rewards the persistent",
+    "Curiosity, and the willingness to stay with a hard problem",
+    "A sound grasp of thermodynamics and kinetics",
+    "Some coding experience is helpful but not required - it can be learned here",
+    "Care in checking results, and the ability to explain them clearly",
   ],
+  howToWrite:
+    "If you would like to work with me, write to me with your programme and year, your relevant background, and the direction that interests you.",
   openDirections: [
     {
       title: "Microkinetic modelling",
@@ -46,6 +48,6 @@ export const group = {
   reviewItems: [
     "Add current and past students (names, roles) to `members` in src/data/group.ts",
     "Note any specific open positions or funding, if applicable",
-    "Adjust the 'what I look for' list to your own words",
+    "Adjust the 'what I look for' list and the enquiry sentence to your own words",
   ],
 };

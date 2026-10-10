@@ -13,12 +13,12 @@ export type Publication = {
 export const publications: Publication[] = [
   {
     type: "journal",
-    year: 2025,
+    year: 2026,
     authors: "Mohammad Zakariya Farooqi, Fatima Jalid",
     title:
       "Microkinetic Modelling-Driven Insights into Water-Gas Shift Catalysis - Towards Unravelling Active Transition Metal-Based Bimetallic Alloys",
     venue: "The Canadian Journal of Chemical Engineering",
-    details: "104, 1403-1419",
+    details: "104(3), 1403-1419",
     url: "https://doi.org/10.1002/cjce.70091",
     tags: ["microkinetics", "alloys"],
   },

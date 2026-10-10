@@ -38,5 +38,5 @@ export const sponsoredProject = {
     "Design of Catalytic Materials and Solvent Environment to Produce Biorenewable Chemicals",
   agency: "SPARC, Ministry of Education",
   role: "Co-Investigator",
-  period: "Starting April 2024",
+  period: "April 2024 - March 2026 (two-year project)",
 };
