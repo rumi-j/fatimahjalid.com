@@ -27,6 +27,7 @@
   --lapis: #1c4e66;
   --lapis-bright: #8fbdd1;
   --rust: #b25438;
+  --rust-text: #9a4430; /* AA-contrast rust for small text on vellum and sage */
 
   /* lines */
   --line: rgba(29, 58, 51, 0.16);

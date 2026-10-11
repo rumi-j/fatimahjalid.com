@@ -15,17 +15,24 @@ const COLS = 8;
 const ROWS = 6;
 const lattice = octagonSquareLattice(COLS, ROWS, CELL);
 
-// Deterministically pick the first seeded walk that stays in the open
-// center of the hero — clear of the portrait column and the caption row.
-const inRegion = (p: { x: number; y: number }) =>
-  p.x >= CELL * 1.6 && p.x <= CELL * 5.2 && p.y >= CELL * 0.7 && p.y <= CELL * 4.6;
+// Deterministically pick the first seeded walk that stays in the lower band of
+// the hero, beneath the headline, lede and buttons — so its reaction labels never
+// cross the copy at any desktop aspect ratio (the lattice is slice-fitted, so the
+// safe area is defined by rows, not columns). Falls back to a slightly taller band.
+const bandFor = (yMin: number) => (p: { x: number; y: number }) =>
+  p.x >= CELL * 1.6 && p.x <= CELL * 5.2 && p.y >= CELL * yMin && p.y <= CELL * 5.7;
 let walk = pathway(lattice, 1, 8);
-for (let seed = 1; seed < 400; seed++) {
-  const candidate = pathway(lattice, seed, 8);
-  if (candidate.points.length >= 8 && candidate.points.every(inRegion)) {
-    walk = candidate;
-    break;
+let found = false;
+for (const yMin of [4.25, 4.1, 3.95, 3.8]) {
+  const inRegion = bandFor(yMin);
+  for (let seed = 1; seed < 3000 && !found; seed++) {
+    const candidate = pathway(lattice, seed, 8);
+    if (candidate.points.length >= 8 && candidate.points.every(inRegion)) {
+      walk = candidate;
+      found = true;
+    }
   }
+  if (found) break;
 }
 
 // Reaction annotations pinned to pathway nodes — the fusion made explicit.
@@ -225,6 +232,11 @@ const height = ROWS * CELL;
     6% { opacity: 0.9; }
     94% { opacity: 0.9; }
     100% { offset-distance: 100%; opacity: 0; }
+  }
+
+  /* Below ~1200px the copy column grows taller and can reach the lower band. */
+  @media (max-width: 1200px) {
+    .net-annotations { display: none; }
   }
 
   @media (max-width: 760px) {

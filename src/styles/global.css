@@ -53,12 +53,13 @@ em { color: var(--rust); font-style: italic; }
 .portrait-frame img { max-height: 580px; filter: saturate(.85) contrast(1.02); }
 .portrait-frame figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; }
 .portrait-frame figcaption p { margin-bottom: 0; }
-.interest-strip { display: flex; gap: 25px; justify-content: space-around; padding: 15px 5vw; overflow: hidden; background: var(--ink); color: var(--paper); font-family: var(--serif); font-size: 1rem; white-space: nowrap; }
+.interest-strip { display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: center; padding: 15px 5vw; background: var(--ink); color: var(--paper); font-family: var(--serif); font-size: 1rem; text-align: center; }
 .interest-strip span::before { margin-right: 20px; color: var(--gold-bright); content: "✴"; }
-.timeline span { font-family: var(--mono); font-size: 1rem !important; color: var(--lapis) !important; padding-top: 6px; }
 
 .prose { color: var(--ink-soft); font-size: 1.05rem; }
-.text-link { color: var(--rust); font-size: .73rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+.text-link { display: inline-block; min-height: 24px; padding-block: 3px; color: var(--rust); font-size: .73rem; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+/* Rust is 3.8-4.1:1 on the tinted grounds; the darker rust-text keeps AA there. */
+.project-work .text-link, .iqbal-section .text-link, .research-card .text-link, .research-tile .text-link, .course-card .text-link, .publication-stats .text-link { color: var(--rust-text); }
 .feature-band, .writing-section { background: var(--ink); color: var(--paper); }
 .project-feature { display: grid; grid-template-columns: 1fr 260px; gap: 50px; padding-block: 75px; }
 .project-feature h2 { margin-bottom: 0; color: var(--paper); font-size: clamp(2.1rem,4vw,4rem); }
@@ -199,7 +200,7 @@ em { color: var(--rust); font-style: italic; }
 .publication-item h3 { max-width: 970px; margin-bottom: 7px; font-family: var(--serif); font-size: 1.45rem; font-weight: 400; letter-spacing: -.015em; }
 .publication-item > p:not(.publication-meta):not(.authors) { font-family: var(--mono); font-size: .78rem; letter-spacing: .02em; }
 .pub-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 12px; }
-.cite-button { padding: 0; border: 0; background: transparent; color: var(--ink-soft); cursor: pointer; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--line); transition: color .18s ease, border-color .18s ease; }
+.cite-button { min-height: 24px; padding: 4px 0; box-sizing: border-box; border: 0; background: transparent; color: var(--ink-soft); cursor: pointer; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--line); transition: color .18s ease, border-color .18s ease; }
 .cite-button:hover { color: var(--ink); border-color: var(--ink); }
 .cite-button.copied { color: var(--rust); border-color: var(--rust); }
 
@@ -252,11 +253,11 @@ em { color: var(--rust); font-style: italic; }
 .book-spine:nth-child(2n) { min-height: 330px; }
 .book-spine:nth-child(3n) { min-height: 315px; }
 .book-spine:hover { transform: translateY(-12px) rotate(-1.5deg); }
-.book-spine span { font-family: var(--mono); font-size: .62rem; opacity: .75; }
+.book-spine span { font-family: var(--mono); font-size: .62rem; opacity: .88; }
 .book-spine h3 { margin: 0; writing-mode: vertical-rl; font-family: var(--serif); font-size: 1.18rem; font-weight: 400; letter-spacing: .01em; max-height: 210px; }
-.book-spine p { margin: auto 0 0; writing-mode: vertical-rl; color: rgba(255,255,255,.72); font-size: .68rem; }
+.book-spine p { margin: auto 0 0; writing-mode: vertical-rl; color: rgba(255,255,255,.88); font-size: .68rem; }
 .shelf-rule { height: 3px; margin-top: 0; background: var(--gold); opacity: .55; }
-.terracotta { background: #ad6049; } .green { background: #31574e; } .gold-tone, .book-spine.gold { background: #b58a39; }
+.terracotta { background: #8f4332; } .green { background: #31574e; } .gold-tone, .book-spine.gold { background: #8a6420; } /* darkened so white labels pass AA */
 .blue { background: #426374; } .plum { background: #614653; } .charcoal { background: #313b3b; }
 .writing-section { padding-block: 100px; }
 .writing-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; }
@@ -297,7 +298,7 @@ em { color: var(--rust); font-style: italic; }
    Scroll choreography — active only when <html> has .reveal-on
    (JS on + motion welcome). Otherwise everything is static.
    ============================================================ */
-.reveal-on main > section,
+.reveal-on main > section:not(:first-of-type),
 .reveal-on [data-reveal="rise"] { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.6,.2,1); }
 .reveal-on [data-reveal="fade"] { opacity: 0; transition: opacity .9s ease; }
 .reveal-on main > section.is-visible,
@@ -334,6 +335,10 @@ em { color: var(--rust); font-style: italic; }
 }
 @keyframes scroll-progress {
   to { transform: scaleX(1); }
+}
+
+@media (max-width: 1100px) {
+  .tile-band, .highlight-grid { grid-template-columns: repeat(2,1fr); }
 }
 
 @media (max-width: 920px) {
@@ -393,7 +398,8 @@ em { color: var(--rust); font-style: italic; }
   .publication-stats span { font-size: .61rem; }
   .profile-links { grid-column: 1/-1; }
   .pub-year-group { grid-template-columns: 1fr; gap: 14px; }
-  .pub-year { font-size: 1.35rem; }
+  .pub-year { position: static; font-size: 1.35rem; }
+  .research-tile .micro-network { max-width: 200px; }
   .courses-section { padding-bottom: 80px; }
   .project-work { padding-block: 75px; }
   .group-section { padding-top: 75px; }
