@@ -1,6 +1,6 @@
 /* SITE */
 Site: fatimahjalid.com
-For: Dr. Fatima Jalid — Assistant Professor, Chemical Engineering, NIT Srinagar
+For: Fatima Jalid — Assistant Professor, Chemical Engineering, NIT Srinagar
 Location: Hazratbal, Srinagar, Kashmir
 
 /* DESIGN */

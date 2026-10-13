@@ -48,7 +48,7 @@ const searchText = (p: Publication) =>
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Publications by Dr. Fatima Jalid",
+  name: "Publications by Fatima Jalid",
   itemListElement: sorted.map((p, index) => ({
     "@type": "ListItem",
     position: index + 1,
@@ -66,8 +66,8 @@ const structuredData = {
 ---
 
 <BaseLayout
-  title="Publications | Dr. Fatima Jalid"
-  description="Peer-reviewed publications, book chapters, and granted patent from Dr. Fatima Jalid."
+  title="Publications | Fatima Jalid"
+  description="Peer-reviewed publications, book chapters, and granted patent from Fatima Jalid."
   structuredData={structuredData}
 >
   <PageIntro

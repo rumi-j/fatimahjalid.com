@@ -1,6 +1,6 @@
 export const site = {
   brand: "fatimahjalid",
-  name: "Dr. Fatima Jalid",
+  name: "Fatima Jalid",
   alternateName: "Fatimah Jalid", // spelling used in the domain name
   role: "Assistant Professor",
   department: "Department of Chemical Engineering",
@@ -9,7 +9,7 @@ export const site = {
   email: "fatima@nitsri.ac.in",
   subtitle: "Learner on the path of God",
   description:
-    "Dr. Fatima Jalid is an Assistant Professor of Chemical Engineering at NIT Srinagar, working on microkinetic modelling, computational catalysis, and sustainable chemical pathways.",
+    "Fatima Jalid is an Assistant Professor of Chemical Engineering at NIT Srinagar, working on microkinetic modelling, computational catalysis, and sustainable chemical pathways.",
   canonical: "https://fatimahjalid.com",
   portrait: "/images/fatima-jalid-portrait.jpg",
   links: {
