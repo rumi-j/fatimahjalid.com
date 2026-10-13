@@ -291,7 +291,6 @@ em { color: var(--rust); font-style: italic; }
 .footer-links { display: flex; flex-direction: column; align-items: start; gap: 9px; padding-top: 31px; color: var(--gold-bright); font-size: .9rem; font-weight: 600; }
 .footer-links span { color: rgba(255,255,255,.52); font-family: var(--mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
 .footer-note { grid-column: 1 / -1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 52px 0 0; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.16); color: rgba(255,255,255,.66); font-size: .73rem; }
-.footer-note .colophon { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
 
 /* ============================================================

@@ -2,7 +2,7 @@ export const site = {
   brand: "fatimahjalid",
   name: "Dr. Fatima Jalid",
   alternateName: "Fatimah Jalid", // spelling used in the domain name
-  role: "Assistant Professor (Grade I)",
+  role: "Assistant Professor",
   department: "Department of Chemical Engineering",
   institute: "National Institute of Technology Srinagar",
   location: "Hazratbal, Srinagar, Jammu and Kashmir",
