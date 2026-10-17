@@ -4,7 +4,7 @@ export const books = [
   { title: "To Kill a Mockingbird", author: "Harper Lee", tone: "gold" },
   { title: "Reflecting on the Names of Allah", author: "Jinan Yousef", tone: "blue" },
   { title: "Mushaf", author: "The Qur'an", tone: "plum" },
-  { title: "The Girl with the Dragon Tattoo", author: "Stieg Larsson", tone: "charcoal" },
+  { title: "The Housekeeper and the Professor", author: "Yoko Ogawa", tone: "charcoal" },
 ];
 
 export const blogPosts = [
