@@ -63,6 +63,21 @@ What to look at, and how often:
 - **Monthly glance:** Performance for the queries bringing visitors, and
   Security & Manual Actions, which should always be empty.
 
+### Indexing log
+
+- **13 November 2026.** Indexing → Pages (last update 9 Nov 2026): 1 indexed,
+  8 not indexed. 3 were "Page with redirect", which is expected: the `http://`,
+  `www.` and no-trailing-slash variants, each confirmed to 301 to the canonical
+  URL. 5 were "Discovered - currently not indexed", flat since mid-October.
+  The live site was checked and does not block crawling: `robots.txt` allows
+  everything and names the sitemap, all six pages return 200 with a
+  self-referencing canonical and no `noindex`, and the homepage links to the
+  other five. Indexing was requested through URL Inspection for `/about/`,
+  `/research/`, `/publications/`, `/teaching/` and `/personal/`. Recheck around
+  27 November 2026. If pages are still not indexed, add links to the site from
+  the NIT Srinagar profile, Google Scholar, ORCID and LinkedIn rather than
+  changing the site.
+
 ## Yearly
 
 - Domain renewal: 10 October 2027 (auto-renew is on; confirm the card on the
