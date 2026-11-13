@@ -112,6 +112,7 @@ em { color: var(--rust); font-style: italic; }
 
 .about-split { display: grid; grid-template-columns: minmax(0, .82fr) 1fr; gap: 60px; align-items: start; padding-block: 25px 100px; }
 .about-portrait { max-width: 430px; align-self: start; margin: 0; }
+.about-portrait img { height: auto; }
 .about-caption { margin-top: 14px; color: var(--ink-soft); font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; text-align: center; }
 .about-split .prose { font-size: 1.08rem; }
 .about-split .prose p { margin-bottom: 18px; }

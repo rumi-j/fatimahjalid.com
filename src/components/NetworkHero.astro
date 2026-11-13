@@ -35,13 +35,54 @@ for (const yMin of [4.25, 4.1, 3.95, 3.8]) {
   if (found) break;
 }
 
-// Reaction annotations pinned to pathway nodes — the fusion made explicit.
-const annotations = [
+const nodeRadius = (i: number) => (i === 0 || i === walk.points.length - 1 ? 7 : 4.5);
+
+// Reaction annotations pinned to the pathway's two ends — the fusion made
+// explicit. Placed here, at build time, so they cannot overlap: each label
+// tries four anchors in order (above right, below right, above left, below
+// left) and takes the first whose estimated box clears every pathway node and
+// every label already placed by 6 px. A label that fits nowhere is dropped.
+// The geometry is fixed, so every build places them the same way.
+const LABEL_CHAR_W = 8; // estimated advance per character of the 13px mono
+const LABEL_H = 16;
+const LABEL_OFFSET = 14; // from a node's centre to the near edges of its label box
+const LABEL_CLEARANCE = 6;
+type Box = { x0: number; y0: number; x1: number; y1: number };
+const gap = (dx0: number, dx1: number, dy0: number, dy1: number) =>
+  Math.hypot(Math.max(dx0, dx1, 0), Math.max(dy0, dy1, 0));
+const clearsNode = (b: Box, p: { x: number; y: number }, r: number) =>
+  gap(b.x0 - p.x, p.x - b.x1, b.y0 - p.y, p.y - b.y1) >= r + LABEL_CLEARANCE;
+const clearsBox = (a: Box, b: Box) =>
+  gap(b.x0 - a.x1, a.x0 - b.x1, b.y0 - a.y1, a.y0 - b.y1) >= LABEL_CLEARANCE;
+const ANCHORS = [
+  { right: true, above: true },
+  { right: true, above: false },
+  { right: false, above: true },
+  { right: false, above: false },
+];
+const annotations: { label: string; x: number; y: number; anchor: "start" | "end" }[] = [];
+const placedBoxes: Box[] = [];
+for (const { label, point } of [
   { label: "CH₃CH₂OH*", point: walk.points[0] },
-  { label: "ΔG‡ 0.87 eV", point: walk.points[2] },
-  { label: "site: Ni(111)", point: walk.points[4] },
   { label: "H₂ + *", point: walk.points[walk.points.length - 1] },
-].filter((a) => a.point);
+]) {
+  if (!point) continue;
+  const w = [...label].length * LABEL_CHAR_W;
+  for (const { right, above } of ANCHORS) {
+    const x0 = right ? point.x + LABEL_OFFSET : point.x - LABEL_OFFSET - w;
+    const y0 = above ? point.y - LABEL_OFFSET - LABEL_H : point.y + LABEL_OFFSET;
+    const box = { x0, y0, x1: x0 + w, y1: y0 + LABEL_H };
+    if (
+      walk.points.every((p, i) => clearsNode(box, p, nodeRadius(i))) &&
+      placedBoxes.every((b) => clearsBox(box, b))
+    ) {
+      placedBoxes.push(box);
+      // Baseline 4 px above the box bottom leaves room for subscripts.
+      annotations.push({ label, x: right ? box.x0 : box.x1, y: box.y1 - 4, anchor: right ? "start" : "end" });
+      break;
+    }
+  }
+}
 
 const nodeTones = ["gold", "lapis", "rust", "lapis", "gold", "lapis", "rust", "gold", "lapis"];
 const stars = [
@@ -84,25 +125,15 @@ const height = ROWS * CELL;
     <path class="reaction-pathway" d={walk.d} pathLength="1" style={`offset-path: path("${walk.d}")`} />
     <g aria-hidden="true">
       {walk.points.map((p, i) => (
-        <circle class={`net-node tone-${nodeTones[i % nodeTones.length]}`} cx={p.x} cy={p.y} r={i === 0 || i === walk.points.length - 1 ? 7 : 4.5} style={`animation-delay: ${i * 0.55}s`} />
+        <circle class={`net-node tone-${nodeTones[i % nodeTones.length]}`} cx={p.x} cy={p.y} r={nodeRadius(i)} style={`animation-delay: ${i * 0.55}s`} />
       ))}
       <circle class="species species-a" r="5" style={`offset-path: path("${walk.d}")`} />
       <circle class="species species-b" r="3.5" style={`offset-path: path("${walk.d}")`} />
     </g>
     <g class="net-annotations" aria-hidden="true">
-      {annotations.map((a) => {
-        // Anchor right-of-node normally; flip left near the portrait column.
-        const flip = a.point.x > CELL * 4;
-        return (
-          <text
-            x={flip ? a.point.x - 14 : a.point.x + 14}
-            y={a.point.y - 12}
-            text-anchor={flip ? "end" : "start"}
-          >
-            {a.label}
-          </text>
-        );
-      })}
+      {annotations.map((a) => (
+        <text x={a.x} y={a.y} text-anchor={a.anchor}>{a.label}</text>
+      ))}
       <text class="folio-caption" x={20} y={height - 26}>folio 01 — surface reactions, rendered as strapwork</text>
     </g>
   </svg>
