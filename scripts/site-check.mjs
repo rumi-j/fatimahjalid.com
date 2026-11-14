@@ -313,9 +313,97 @@ const px = (n) => Math.round(n * 10) / 10;
     notes.push(`${kind} copy: ${good} of ${n} buttons copied the record's text`);
     if (n === 0) failures.push(`no ${kind} copy buttons rendered`);
   }
+
+  // WP3 (F3): keys distinct, each keyed record's id is its key, no Unicode
+  // subscript left in any BibTeX, and an entry with no key has no BibTeX.
+  const bib = await page.evaluate(() =>
+    [...document.querySelectorAll(".publication-item")].map((item) => ({
+      id: item.id,
+      title: item.querySelector("h3")?.textContent.trim().slice(0, 50),
+      bibtex: item.querySelector(".cite-bibtex")?.textContent ?? null,
+      button: !!item.querySelector('[data-copy="bibtex"]'),
+    })),
+  );
+  const keys = bib.filter((b) => b.bibtex).map((b) => b.bibtex.match(/^\s*@\w+\{([^,\s]+),/)?.[1]);
+  notes.push(`BibTeX: ${keys.length} entries, ${new Set(keys).size} distinct keys; ${bib.length - keys.length} records without BibTeX`);
+  if (new Set(keys).size !== keys.length) failures.push(`duplicate BibTeX keys: ${keys.join(", ")}`);
+  for (const b of bib) {
+    const key = b.bibtex?.match(/^\s*@\w+\{([^,\s]+),/)?.[1];
+    if (b.bibtex && b.id !== key) failures.push(`"${b.title}": id "${b.id}" is not its BibTeX key "${key}"`);
+    if (b.bibtex && /[₀-₉]/.test(b.bibtex)) failures.push(`"${b.title}": Unicode subscript left in BibTeX`);
+    if (!b.bibtex && (b.button || b.id)) failures.push(`"${b.title}": no BibTeX text but has a BibTeX button or an id`);
+  }
+
+  // WP3 (F6): subscripts fold in search, so "co2" and "CO₂" find the same records.
+  const hits = {};
+  for (const q of ["co2", "CO₂"]) {
+    await page.fill(".pub-search", q);
+    hits[q] = (await state()).visible;
+  }
+  await page.fill(".pub-search", "");
+  notes.push(`search "co2": ${hits.co2} records; "CO₂": ${hits["CO₂"]} records`);
+  if (hits.co2 === 0 || hits.co2 !== hits["CO₂"]) failures.push(`search "co2" found ${hits.co2}, "CO₂" found ${hits["CO₂"]}`);
+
+  // WP3 (F4): with a type, a topic and a search that match nothing, the empty
+  // line shows; "Clear filters" resets all three and restores every record.
+  await page.click('.filter-row .filter[data-filter="journal"]');
+  await page.click(".topic-row .topic[data-topic]");
+  await page.fill(".pub-search", "zzz");
+  const emptyLine = await page.evaluate(() => {
+    const el = document.querySelector(".pub-empty");
+    return el && !el.hidden && el.checkVisibility() ? el.innerText.trim() : null;
+  });
+  notes.push(`search "zzz": empty state ${emptyLine ? JSON.stringify(emptyLine.split("\n")[0]) : "not shown"}`);
+  if (!emptyLine?.startsWith("No records match these filters.")) failures.push(`search "zzz": the line "No records match these filters." is not shown`);
+  const clearButton = page.locator(".pub-clear");
+  if (await clearButton.isVisible()) {
+    await clearButton.click();
+    const reset = await state();
+    const controls = await page.evaluate(() => ({
+      search: document.querySelector(".pub-search").value,
+      type: document.querySelector(".filter-row .filter.active")?.dataset.filter,
+      topics: document.querySelectorAll(".topic-row .topic.active").length,
+      emptyShown: !document.querySelector(".pub-empty").hidden,
+    }));
+    notes.push(`"Clear filters": ${reset.visible} records, count "${reset.count}", type ${controls.type}, ${controls.topics} topics on`);
+    if (reset.visible !== start.total || controls.search !== "" || controls.type !== "all" || controls.topics !== 0 || controls.emptyShown)
+      failures.push(`"Clear filters" left ${reset.visible} of ${start.total} records, search "${controls.search}", type ${controls.type}, ${controls.topics} topics on`);
+  } else failures.push('"Clear filters" button not shown with no matches');
+
   for (const e of errors) failures.push(`console: ${e}`);
   await context.close();
-  record("Publications: count, filters, no-match search, citation and BibTeX copy", failures, notes);
+
+  // WP3 (F4): when the clipboard write is refused, the button says so and the
+  // citation is shown and selected. The refusal is simulated by replacing
+  // navigator.clipboard.writeText with one that rejects, as a denied
+  // permission does; headless Chrome does not reliably refuse on its own.
+  {
+    const ctx = await browser.newContext({ viewport: DESKTOP, reducedMotion: "reduce" });
+    await ctx.addInitScript(() => {
+      Object.defineProperty(navigator.clipboard, "writeText", {
+        value: () => Promise.reject(new DOMException("Write permission denied.", "NotAllowedError")),
+      });
+    });
+    const p = await ctx.newPage();
+    await p.goto(BASE + "/publications/", { waitUntil: "networkidle" });
+    const button = p.locator('.publication-item [data-copy="citation"]').first();
+    await button.click();
+    await p.waitForFunction(() => document.querySelector('.publication-item [data-copy="citation"]').textContent.trim() !== "Copy citation", null, { timeout: 2000 }).catch(() => {});
+    const r = await p.evaluate(() => {
+      const item = document.querySelector(".publication-item");
+      const shown = item.querySelector(".cite-citation");
+      return {
+        label: item.querySelector('[data-copy="citation"]').textContent.trim(),
+        shown: !!shown && !shown.hidden && shown.getBoundingClientRect().height > 0,
+        selected: String(window.getSelection()) === shown?.textContent,
+      };
+    });
+    notes.push(`copy refused: button reads "${r.label}", citation ${r.shown ? "shown" : "not shown"}, ${r.selected ? "selected" : "not selected"}`);
+    if (r.label !== "Select and copy" || !r.shown || !r.selected)
+      failures.push(`copy refused: button reads "${r.label}", citation shown ${r.shown}, selected ${r.selected}`);
+    await ctx.close();
+  }
+  record("Publications: count, filters, searches, empty state, BibTeX keys, citation and BibTeX copy", failures, notes);
 }
 
 // 5. Every route at 1440 and 390: no console errors (with and without reduced
@@ -346,9 +434,12 @@ const px = (n) => Math.round(n * 10) / 10;
               .slice(0, 5)
               .map((el) => `${el.tagName.toLowerCase()}.${[...el.classList].join(".")}`),
             noAlt: [...document.querySelectorAll("img")].filter((i) => !i.hasAttribute("alt")).map((i) => i.currentSrc || i.src),
+            // WP3 (F6): CO₂ in visible text. CO2 may stay in attributes and keys.
+            co2: (document.body.innerText.match(/.{0,30}CO2.{0,30}/g) ?? []).map((s) => s.trim()),
           }));
           if (r.docW > viewport.width) failures.push(`${label} ${route}: page is ${r.docW} px wide (overflow); widest: ${r.wide.join(", ")}`);
           for (const src of r.noAlt) failures.push(`${label} ${route}: <img> without alt: ${src}`);
+          for (const s of r.co2) failures.push(`${label} ${route}: visible text shows "CO2": …${s}…`);
         }
         for (const e of errors) failures.push(`${label} ${route} (${motion}): console: ${e}`);
         await context.close();
@@ -356,7 +447,7 @@ const px = (n) => Math.round(n * 10) / 10;
     }
   }
   notes.push(`${ROUTES.length} routes × 2 widths × 2 motion settings loaded`);
-  record("Every route at 1440 and 390: no console errors, no horizontal overflow, every <img> has alt", failures, notes);
+  record("Every route at 1440 and 390: no console errors, no horizontal overflow, every <img> has alt, no visible \"CO2\"", failures, notes);
 }
 
 await browser.close();

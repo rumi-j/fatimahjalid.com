@@ -3,12 +3,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import { publications, publicationStats, type Publication } from "../data/publications";
 import { site } from "../data/site";
+import { bibtex, checkPublications, citation, formatDetails, referenceUrl, searchText } from "../lib/citations";
+
+// Fails the build on a duplicate or missing key, or an incomplete journal entry.
+checkPublications(publications);
 
 const labels = { journal: "Journal article", chapter: "Book chapter", patent: "Patent" };
 
 const sorted = [...publications].sort((a, b) => b.year - a.year);
 
 const allTags = [...new Set(publications.flatMap((p) => p.tags ?? []))].sort();
+// Tag values stay as stored (data-topic, data-tags); only the button text changes.
+const topicLabel: Record<string, string> = { CO2: "CO₂" };
 
 type Group = { year: number; items: Publication[] };
 const groups: Group[] = [];
@@ -17,33 +23,6 @@ for (const item of sorted) {
   if (group) group.items.push(item);
   else groups.push({ year: item.year, items: [item] });
 }
-
-const bibKey = (p: Publication) => {
-  const firstAuthor = p.authors.split(",")[0].trim();
-  const last = firstAuthor.split(/\s+/).filter(Boolean).pop() ?? "ref";
-  return `${last.replace(/[^A-Za-z]/g, "")}${p.year}`;
-};
-
-const citation = (p: Publication) => {
-  const venue = p.details ? `${p.venue}, ${p.details}` : p.venue;
-  return `${p.authors} (${p.year}). ${p.title}. ${venue}.`;
-};
-
-const bibtex = (p: Publication) => {
-  const entryType = p.type === "journal" ? "article" : p.type === "chapter" ? "incollection" : "misc";
-  const authors = p.authors.replace(/\s*,\s*/g, " and ");
-  const lines = [`  author = {${authors}}`, `  title = {${p.title}}`];
-  if (p.type === "chapter") lines.push(`  booktitle = {${p.venue}}`);
-  else if (p.type === "journal") lines.push(`  journal = {${p.venue}}`);
-  else lines.push(`  howpublished = {${p.venue}}`);
-  lines.push(`  year = {${p.year}}`);
-  if (p.details) lines.push(`  note = {${p.details}}`);
-  if (p.url && p.url.includes("doi.org")) lines.push(`  doi = {${p.url.split("doi.org/")[1]}}`);
-  return `@${entryType}{${bibKey(p)},\n${lines.join(",\n")}\n}`;
-};
-
-const searchText = (p: Publication) =>
-  `${p.title} ${p.authors} ${p.venue} ${p.details ?? ""}`.toLowerCase();
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -59,7 +38,7 @@ const structuredData = {
       datePublished: String(p.year),
       author: p.authors.split(/,\s*/).map((name) => ({ "@type": "Person", name })),
       isPartOf: p.venue,
-      ...(p.url ? { url: p.url } : {}),
+      ...(referenceUrl(p) ? { url: referenceUrl(p) } : {}),
     },
   })),
 };
@@ -99,12 +78,16 @@ const structuredData = {
       </div>
       <div class="topic-row" role="group" aria-label="Filter by topic">
         {allTags.map((tag) => (
-          <button class="topic" type="button" aria-pressed="false" data-topic={tag}>{tag}</button>
+          <button class="topic" type="button" aria-pressed="false" data-topic={tag}>{topicLabel[tag] ?? tag}</button>
         ))}
       </div>
     </div>
 
     <p class="result-count" aria-live="polite">{publications.length} records</p>
+    <div class="pub-empty" hidden>
+      <p>No records match these filters.</p>
+      <button class="pub-clear" type="button">Clear filters</button>
+    </div>
 
     <div class="publication-list">
       {groups.map((group) => (
@@ -113,6 +96,7 @@ const structuredData = {
           <div class="pub-year-items">
             {group.items.map((item) => (
               <article
+                id={item.key}
                 class="publication-item"
                 data-type={item.type}
                 data-tags={(item.tags ?? []).join(",")}
@@ -121,16 +105,16 @@ const structuredData = {
                 <p class="publication-meta">{labels[item.type]}{item.note ? ` · ${item.note}` : ""}</p>
                 <h3>{item.title}</h3>
                 <p class="authors">{item.authors}</p>
-                <p>{item.venue}{item.details && ` · ${item.details}`}</p>
+                <p>{item.venue}{formatDetails(item) && ` · ${formatDetails(item)}`}</p>
                 <div class="pub-actions">
-                  {item.url && (
-                    <a class="text-link" href={item.url} target="_blank" rel="noreferrer">Open reference <span>↗</span></a>
+                  {referenceUrl(item) && (
+                    <a class="text-link" href={referenceUrl(item)} target="_blank" rel="noreferrer">Open reference <span>↗</span></a>
                   )}
                   <button class="cite-button" type="button" data-copy="citation">Copy citation</button>
-                  <button class="cite-button" type="button" data-copy="bibtex">BibTeX</button>
+                  {item.key && <button class="cite-button" type="button" data-copy="bibtex">BibTeX</button>}
                 </div>
                 <span class="cite-citation" hidden>{citation(item)}</span>
-                <span class="cite-bibtex" hidden>{bibtex(item)}</span>
+                {item.key && <span class="cite-bibtex" hidden>{bibtex(item)}</span>}
               </article>
             ))}
           </div>
@@ -140,6 +124,8 @@ const structuredData = {
   </section>
 
   <script>
+    import { bindCopyButtons, foldSubscripts } from "../lib/citations";
+
     const root = document.querySelector<HTMLElement>(".publication-section");
     if (root) {
       const search = root.querySelector<HTMLInputElement>(".pub-search");
@@ -148,12 +134,14 @@ const structuredData = {
       const items = root.querySelectorAll<HTMLElement>(".publication-item");
       const groupEls = root.querySelectorAll<HTMLElement>(".pub-year-group");
       const count = root.querySelector<HTMLElement>(".result-count");
+      const empty = root.querySelector<HTMLElement>(".pub-empty");
+      const clear = root.querySelector<HTMLButtonElement>(".pub-clear");
 
       let typeFilter = "all";
       const activeTopics = new Set<string>();
 
       const apply = () => {
-        const query = (search?.value ?? "").trim().toLowerCase();
+        const query = foldSubscripts(search?.value ?? "").trim().toLowerCase();
         let visible = 0;
         items.forEach((item) => {
           const type = item.dataset.type ?? "";
@@ -170,15 +158,21 @@ const structuredData = {
           group.hidden = !group.querySelector(".publication-item:not([hidden])");
         });
         if (count) count.textContent = `${visible} ${visible === 1 ? "record" : "records"}`;
+        if (empty) empty.hidden = visible > 0;
+      };
+
+      const setType = (value: string) => {
+        typeFilter = value;
+        typeButtons.forEach((other) => {
+          const on = other.dataset.filter === value;
+          other.classList.toggle("active", on);
+          other.setAttribute("aria-pressed", String(on));
+        });
       };
 
       typeButtons.forEach((button) =>
         button.addEventListener("click", () => {
-          typeFilter = button.dataset.filter ?? "all";
-          typeButtons.forEach((other) => {
-            other.classList.toggle("active", other === button);
-            other.setAttribute("aria-pressed", String(other === button));
-          });
+          setType(button.dataset.filter ?? "all");
           apply();
         }),
       );
@@ -196,24 +190,21 @@ const structuredData = {
 
       search?.addEventListener("input", apply);
 
-      root.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) =>
-        button.addEventListener("click", async () => {
-          const kind = button.dataset.copy === "bibtex" ? ".cite-bibtex" : ".cite-citation";
-          const text = button.closest(".publication-item")?.querySelector(kind)?.textContent ?? "";
-          try {
-            await navigator.clipboard.writeText(text);
-            const previous = button.textContent;
-            button.textContent = "Copied ✓";
-            button.classList.add("copied");
-            window.setTimeout(() => {
-              button.textContent = previous;
-              button.classList.remove("copied");
-            }, 1500);
-          } catch {
-            /* clipboard unavailable */
-          }
-        }),
-      );
+      // Reset the search, the type filter and the topics. The button hides
+      // itself, so focus moves to the search field.
+      clear?.addEventListener("click", () => {
+        if (search) search.value = "";
+        setType("all");
+        activeTopics.clear();
+        topicButtons.forEach((button) => {
+          button.classList.remove("active");
+          button.setAttribute("aria-pressed", "false");
+        });
+        apply();
+        search?.focus();
+      });
+
+      bindCopyButtons(root);
     }
   </script>
 </BaseLayout>

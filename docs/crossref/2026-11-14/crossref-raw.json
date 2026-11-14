@@ -1,0 +1,573 @@
+{
+  "10.1002/cjce.70091": {
+    "DOI": "10.1002/cjce.70091",
+    "type": "journal-article",
+    "title": [
+      "Microkinetic modelling‐driven insights into water–gas shift catalysis—Towards unravelling active transition metal‐based bimetallic alloys"
+    ],
+    "container-title": [
+      "The Canadian Journal of Chemical Engineering"
+    ],
+    "volume": "104",
+    "issue": "3",
+    "page": "1403-1419",
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          9,
+          29
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          3
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          9,
+          29
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Mohammad Zakariya",
+        "family": "Farooqi",
+        "sequence": "first"
+      },
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1002/cctc.202101481": {
+    "DOI": "10.1002/cctc.202101481",
+    "type": "journal-article",
+    "title": [
+      "Machine Learning Enabled Screening of Single Atom Alloys: Predicting Reactivity Trend for Ethanol Dehydrogenation"
+    ],
+    "container-title": [
+      "ChemCatChem"
+    ],
+    "volume": "14",
+    "issue": "2",
+    "article-number": "e202101481",
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          12,
+          8
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2022,
+          1,
+          21
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2021,
+          12,
+          8
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Amrish",
+        "family": "Kumar",
+        "sequence": "first"
+      },
+      {
+        "given": "Jayendran",
+        "family": "Iyer",
+        "sequence": "additional"
+      },
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "additional"
+      },
+      {
+        "given": "Manojkumar",
+        "family": "Ramteke",
+        "sequence": "additional"
+      },
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1039/D1RE00396H": {
+    "DOI": "10.1039/d1re00396h",
+    "type": "journal-article",
+    "title": [
+      "Tracing the reactivity of single atom alloys for ethanol dehydrogenation using\n                    <i>ab initio</i>\n                    simulations"
+    ],
+    "container-title": [
+      "Reaction Chemistry &amp; Engineering"
+    ],
+    "volume": "7",
+    "issue": "1",
+    "page": "61-75",
+    "issued": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Jayendran",
+        "family": "Iyer",
+        "sequence": "first"
+      },
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "additional"
+      },
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1016/j.apenergy.2021.117284": {
+    "DOI": "10.1016/j.apenergy.2021.117284",
+    "type": "journal-article",
+    "title": [
+      "Exploring bimetallic alloy catalysts of Co, Pd and Cu for CO2 reduction combined with ethane dehydrogenation"
+    ],
+    "container-title": [
+      "Applied Energy"
+    ],
+    "volume": "299",
+    "page": "117284",
+    "article-number": "117284",
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          10
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          10
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin Suvra",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1039/D0CY02155E": {
+    "DOI": "10.1039/d0cy02155e",
+    "type": "journal-article",
+    "title": [
+      "Mechanistic insights into the dominant reaction route and catalyst deactivation in biogas reforming using\n                    <i>ab initio</i>\n                    microkinetic modeling"
+    ],
+    "container-title": [
+      "Catalysis Science &amp; Technology"
+    ],
+    "volume": "11",
+    "issue": "6",
+    "page": "2130-2143",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      },
+      {
+        "given": "Md. Imteyaz",
+        "family": "Alam",
+        "sequence": "additional"
+      },
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1016/j.cattod.2020.11.021": {
+    "DOI": "10.1016/j.cattod.2020.11.021",
+    "type": "journal-article",
+    "title": [
+      "Insights into the activity and selectivity trends in non-oxidative dehydrogenation of primary and secondary alcohols over the copper catalyst"
+    ],
+    "container-title": [
+      "Catalysis Today"
+    ],
+    "volume": "370",
+    "page": "151-160",
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          6
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2021,
+          6
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1039/D0CY01290D": {
+    "DOI": "10.1039/d0cy01290d",
+    "type": "journal-article",
+    "title": [
+      "CO\n                    <sub>2</sub>\n                    reduction and ethane dehydrogenation on transition metal catalysts: mechanistic insights, reactivity trends and rational design of bimetallic alloys"
+    ],
+    "container-title": [
+      "Catalysis Science &amp; Technology"
+    ],
+    "volume": "11",
+    "issue": "1",
+    "page": "97-115",
+    "issued": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2021
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin Suvra",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1039/C9TA07651D": {
+    "DOI": "10.1039/c9ta07651d",
+    "type": "journal-article",
+    "title": [
+      "<i>In silico</i>\n                    high throughput screening of bimetallic and single atom alloys using machine learning and\n                    <i>ab initio</i>\n                    microkinetic modelling"
+    ],
+    "container-title": [
+      "Journal of Materials Chemistry A"
+    ],
+    "volume": "8",
+    "issue": "1",
+    "page": "107-123",
+    "issued": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2020
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Shivam",
+        "family": "Saxena",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin Suvra",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "additional"
+      },
+      {
+        "given": "Manojkumar",
+        "family": "Ramteke",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1557/mrc.2019.6": {
+    "DOI": "10.1557/mrc.2019.6",
+    "type": "journal-article",
+    "title": [
+      "In-silico screening of Pt-based bimetallic alloy catalysts using ab initio microkinetic modeling for non-oxidative dehydrogenation of ethanol to produce acetaldehyde"
+    ],
+    "container-title": [
+      "MRS Communications"
+    ],
+    "volume": "9",
+    "issue": "1",
+    "page": "107-113",
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          3
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2019,
+          3
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2019,
+          3,
+          15
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "M.",
+        "family": "Ali Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1007/s11244-018-1028-9": {
+    "DOI": "10.1007/s11244-018-1028-9",
+    "type": "journal-article",
+    "title": [
+      "First-Principle Microkinetic Modeling of Ethanol Dehydrogenation on Metal Catalyst Surfaces in Non-oxidative Environment: Design of Bimetallic Alloys"
+    ],
+    "container-title": [
+      "Topics in Catalysis"
+    ],
+    "volume": "61",
+    "issue": "18-19",
+    "page": "1820-1831",
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          24
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2018,
+          11
+        ]
+      ]
+    },
+    "published-online": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          24
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Tuhin S.",
+        "family": "Khan",
+        "sequence": "first"
+      },
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  },
+  "10.1016/j.jcat.2017.07.018": {
+    "DOI": "10.1016/j.jcat.2017.07.018",
+    "type": "journal-article",
+    "title": [
+      "Understanding trends in hydrodeoxygenation reactivity of metal and bimetallic alloy catalysts from ethanol reaction on stepped surface"
+    ],
+    "container-title": [
+      "Journal of Catalysis"
+    ],
+    "volume": "353",
+    "page": "265-273",
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          9
+        ]
+      ]
+    },
+    "published-print": {
+      "date-parts": [
+        [
+          2017,
+          9
+        ]
+      ]
+    },
+    "author": [
+      {
+        "given": "Fatima",
+        "family": "Jalid",
+        "sequence": "first"
+      },
+      {
+        "given": "Tuhin Suvra",
+        "family": "Khan",
+        "sequence": "additional"
+      },
+      {
+        "given": "Fasil Qayoom",
+        "family": "Mir",
+        "sequence": "additional"
+      },
+      {
+        "given": "M. Ali",
+        "family": "Haider",
+        "sequence": "additional"
+      }
+    ]
+  }
+}

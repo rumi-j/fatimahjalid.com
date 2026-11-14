@@ -203,6 +203,14 @@ em { color: var(--rust); font-style: italic; }
 .cite-button { min-height: 24px; padding: 4px 0; box-sizing: border-box; border: 0; background: transparent; color: var(--ink-soft); cursor: pointer; font-family: var(--mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; border-bottom: 1px solid var(--line); transition: color .18s ease, border-color .18s ease; }
 .cite-button:hover { color: var(--ink); border-color: var(--ink); }
 .cite-button.copied { color: var(--rust); border-color: var(--rust); }
+/* Shown only when the clipboard write fails ("Select and copy"). The site's
+   --mono face is small caps, which would misstate the case of what is copied,
+   so this uses the system monospace (no font download). */
+.cite-citation:not([hidden]), .cite-bibtex:not([hidden]) { display: block; margin-top: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 4px; background: var(--vellum); color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .76rem; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.pub-empty:not([hidden]) { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin: 4px 0 24px; }
+.pub-empty p { margin: 0; color: var(--ink-soft); }
+.pub-clear { min-height: 32px; padding: 6px 16px; border: 1px solid var(--ink); border-radius: 99px 99px 6px 6px; background: transparent; color: var(--ink); cursor: pointer; font-family: var(--mono); font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; }
+.pub-clear:hover { background: var(--ink); color: white; }
 
 .courses-section { padding-bottom: 110px; }
 .course-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }

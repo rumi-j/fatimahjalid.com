@@ -40,7 +40,7 @@ export const group = {
     },
     {
       title: "Low-carbon pathways",
-      text: "Exploring reforming, dehydrogenation, and CO2-assisted routes toward more responsible chemistry.",
+      text: "Exploring reforming, dehydrogenation, and CO₂-assisted routes toward more responsible chemistry.",
     },
   ],
   members: [] as GroupMember[],

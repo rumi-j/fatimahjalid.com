@@ -28,8 +28,8 @@ export const researchAreas = [
     title: "Carbon-aware pathways",
     label: "Low-carbon chemistry",
     summary:
-      "Exploring reforming, alcohol dehydrogenation, and CO2-assisted pathways toward more responsible chemical production.",
-    tags: ["CO2", "reforming", "dehydrogenation"],
+      "Exploring reforming, alcohol dehydrogenation, and CO₂-assisted pathways toward more responsible chemical production.",
+    tags: ["CO₂", "reforming", "dehydrogenation"],
   },
 ];
 

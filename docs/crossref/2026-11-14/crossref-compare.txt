@@ -1,0 +1,118 @@
+Crossref comparison, run 2026-11-14T05:30:50.455Z
+Records with a DOI: 11; fields that differ: 16
+
+DOI   10.1002/cjce.70091  (2026 The Canadian Journal of Chemical Engineering: Microkinetic Modelling-Driven Insights into Water-Gas Shift )
+      Crossref years: issued 2025, print 2026, online 2025
+      DIFF  title: stored "Microkinetic Modelling-Driven Insights into Water-Gas Shift Catalysis - Towards Unravelling Active Transition Metal-Based Bimetallic Alloys" | Crossref "Microkinetic modelling‐driven insights into water–gas shift catalysis—Towards unravelling active transition metal‐based bimetallic alloys"
+      same  venue: stored "The Canadian Journal of Chemical Engineering" | Crossref "The Canadian Journal of Chemical Engineering"
+      same  volume: stored "(in details: 104(3), 1403-1419)" | Crossref "104"
+      same  issue: stored "(in details: 104(3), 1403-1419)" | Crossref "3"
+      same  pages: stored "(in details: 104(3), 1403-1419)" | Crossref "1403-1419"
+      same  year: stored 2026 | Crossref 2026
+      same  authors: stored "Mohammad Zakariya Farooqi, Fatima Jalid" | Crossref "Mohammad Zakariya Farooqi, Fatima Jalid"
+
+DOI   10.1002/cctc.202101481  (2022 ChemCatChem: Machine Learning Enabled Screening of Single Atom Alloys: Pr)
+      Crossref years: issued 2021, print 2022, online 2021
+      same  title: stored "Machine Learning Enabled Screening of Single Atom Alloys: Predicting Reactivity Trend for Ethanol Dehydrogenation" | Crossref "Machine Learning Enabled Screening of Single Atom Alloys: Predicting Reactivity Trend for Ethanol Dehydrogenation"
+      same  venue: stored "ChemCatChem" | Crossref "ChemCatChem"
+      DIFF  volume: stored null | Crossref "14"
+      DIFF  issue: stored null | Crossref "2"
+      DIFF  articleNumber: stored null | Crossref "e202101481"
+      same  year: stored 2022 | Crossref 2022
+      same  authors: stored "Amrish Kumar, Jayendran Iyer, Fatima Jalid, Manojkumar Ramteke, Tuhin S. Khan, M. Ali Haider" | Crossref "Amrish Kumar, Jayendran Iyer, Fatima Jalid, Manojkumar Ramteke, Tuhin S. Khan, M. Ali Haider"
+
+DOI   10.1039/D1RE00396H  (2022 Reaction Chemistry & Engineering: Tracing the reactivity of single atom alloys for ethanol deh)
+      Crossref years: issued 2022, print -, online 2022
+      same  title: stored "Tracing the reactivity of single atom alloys for ethanol dehydrogenation using ab initio simulations" | Crossref "Tracing the reactivity of single atom alloys for ethanol dehydrogenation using\n                    <i>ab initio</i>\n                    simulations"
+      same  venue: stored "Reaction Chemistry & Engineering" | Crossref "Reaction Chemistry &amp; Engineering"
+      same  volume: stored "(in details: 7, 61-75)" | Crossref "7"
+      DIFF  issue: stored null | Crossref "1"
+      same  pages: stored "(in details: 7, 61-75)" | Crossref "61-75"
+      same  year: stored 2022 | Crossref 2022
+      same  authors: stored "Jayendran Iyer, Fatima Jalid, Tuhin S. Khan, M. Ali Haider" | Crossref "Jayendran Iyer, Fatima Jalid, Tuhin S. Khan, M. Ali Haider"
+
+DOI   10.1016/j.apenergy.2021.117284  (2021 Applied Energy: Exploring bimetallic alloy catalysts of Co, Pd and Cu for CO)
+      Crossref years: issued 2021, print 2021, online -
+      same  title: stored "Exploring bimetallic alloy catalysts of Co, Pd and Cu for CO2 reduction combined with ethane dehydrogenation" | Crossref "Exploring bimetallic alloy catalysts of Co, Pd and Cu for CO2 reduction combined with ethane dehydrogenation"
+      same  venue: stored "Applied Energy" | Crossref "Applied Energy"
+      same  volume: stored "(in details: 299, 117284)" | Crossref "299"
+      same  pages: stored "(in details: 299, 117284)" | Crossref "117284"
+      same  articleNumber: stored "(in details: 299, 117284)" | Crossref "117284"
+      same  year: stored 2021 | Crossref 2021
+      DIFF  authors: stored "Fatima Jalid, Tuhin S. Khan, M. Ali Haider" | Crossref "Fatima Jalid, Tuhin Suvra Khan, M. Ali Haider"
+
+DOI   10.1039/D0CY02155E  (2021 Catalysis Science & Technology: Mechanistic Insights into Dominant Reaction Route and Cataly)
+      Crossref years: issued 2021, print -, online 2021
+      DIFF  title: stored "Mechanistic Insights into Dominant Reaction Route and Catalyst Deactivation in Biogas Reforming using ab initio Microkinetic Modeling" | Crossref "Mechanistic insights into the dominant reaction route and catalyst deactivation in biogas reforming using\n                    <i>ab initio</i>\n                    microkinetic modeling"
+      same  venue: stored "Catalysis Science & Technology" | Crossref "Catalysis Science &amp; Technology"
+      same  volume: stored "(in details: 11, 2130-2143)" | Crossref "11"
+      DIFF  issue: stored null | Crossref "6"
+      same  pages: stored "(in details: 11, 2130-2143)" | Crossref "2130-2143"
+      same  year: stored 2021 | Crossref 2021
+      DIFF  authors: stored "Fatima Jalid, M. Ali Haider, M. I. Alam, Tuhin S. Khan" | Crossref "Fatima Jalid, M. Ali Haider, Md. Imteyaz Alam, Tuhin S. Khan"
+
+DOI   10.1016/j.cattod.2020.11.021  (2021 Catalysis Today: Insights into the activity and selectivity trends in non-oxi)
+      Crossref years: issued 2021, print 2021, online -
+      same  title: stored "Insights into the activity and selectivity trends in non-oxidative dehydrogenation of primary and secondary alcohols over the copper catalyst" | Crossref "Insights into the activity and selectivity trends in non-oxidative dehydrogenation of primary and secondary alcohols over the copper catalyst"
+      same  venue: stored "Catalysis Today" | Crossref "Catalysis Today"
+      same  volume: stored "(in details: 370, 151-160)" | Crossref "370"
+      same  pages: stored "(in details: 370, 151-160)" | Crossref "151-160"
+      same  year: stored 2021 | Crossref 2021
+      same  authors: stored "Fatima Jalid, Tuhin S. Khan, M. Ali Haider" | Crossref "Fatima Jalid, Tuhin S. Khan, M. Ali Haider"
+
+DOI   10.1039/D0CY01290D  (2021 Catalysis Science & Technology: CO2 reduction and ethane dehydrogenation on transition metal)
+      Crossref years: issued 2021, print -, online 2021
+      same  title: stored "CO2 reduction and ethane dehydrogenation on transition metal catalysts: mechanistic insights, reactivity trends and rational design of bimetallic alloys" | Crossref "CO\n                    <sub>2</sub>\n                    reduction and ethane dehydrogenation on transition metal catalysts: mechanistic insights, reactivity trends and rational design of bimetallic alloys"
+      same  venue: stored "Catalysis Science & Technology" | Crossref "Catalysis Science &amp; Technology"
+      same  volume: stored "(in details: 11, 97-115)" | Crossref "11"
+      DIFF  issue: stored null | Crossref "1"
+      same  pages: stored "(in details: 11, 97-115)" | Crossref "97-115"
+      same  year: stored 2021 | Crossref 2021
+      DIFF  authors: stored "Fatima Jalid, Tuhin S. Khan, M. Ali Haider" | Crossref "Fatima Jalid, Tuhin Suvra Khan, M. Ali Haider"
+
+DOI   10.1039/C9TA07651D  (2020 Journal of Materials Chemistry A: In silico high throughput screening of bimetallic and single)
+      Crossref years: issued 2020, print -, online 2020
+      same  title: stored "In silico high throughput screening of bimetallic and single atom alloys using machine learning and ab initio microkinetic modelling" | Crossref "<i>In silico</i>\n                    high throughput screening of bimetallic and single atom alloys using machine learning and\n                    <i>ab initio</i>\n                    microkinetic modelling"
+      same  venue: stored "Journal of Materials Chemistry A" | Crossref "Journal of Materials Chemistry A"
+      same  volume: stored "(in details: 8, 107-123)" | Crossref "8"
+      DIFF  issue: stored null | Crossref "1"
+      same  pages: stored "(in details: 8, 107-123)" | Crossref "107-123"
+      same  year: stored 2020 | Crossref 2020
+      DIFF  authors: stored "Shivam Saxena, Tuhin S. Khan, Fatima Jalid, Manoj Kumar Ramteke, M. Ali Haider" | Crossref "Shivam Saxena, Tuhin Suvra Khan, Fatima Jalid, Manojkumar Ramteke, M. Ali Haider"
+
+DOI   10.1557/mrc.2019.6  (2019 MRS Communications: In-silico screening of Pt-based bimetallic alloy catalysts u)
+      Crossref years: issued 2019, print 2019, online 2019
+      same  title: stored "In-silico screening of Pt-based bimetallic alloy catalysts using ab initio microkinetic modeling for non-oxidative dehydrogenation of ethanol to produce acetaldehyde" | Crossref "In-silico screening of Pt-based bimetallic alloy catalysts using ab initio microkinetic modeling for non-oxidative dehydrogenation of ethanol to produce acetaldehyde"
+      same  venue: stored "MRS Communications" | Crossref "MRS Communications"
+      same  volume: stored "(in details: 9, 107-113)" | Crossref "9"
+      DIFF  issue: stored null | Crossref "1"
+      same  pages: stored "(in details: 9, 107-113)" | Crossref "107-113"
+      same  year: stored 2019 | Crossref 2019
+      same  authors: stored "Fatima Jalid, Tuhin S. Khan, M. Ali Haider" | Crossref "Fatima Jalid, Tuhin S. Khan, M. Ali Haider"
+
+DOI   10.1007/s11244-018-1028-9  (2018 Topics in Catalysis: First-Principle Microkinetic Modeling of Ethanol Dehydrogena)
+      Crossref years: issued 2018, print 2018, online 2018
+      same  title: stored "First-Principle Microkinetic Modeling of Ethanol Dehydrogenation on Metal Catalyst Surfaces in Non-oxidative Environment: Design of Bimetallic Alloys" | Crossref "First-Principle Microkinetic Modeling of Ethanol Dehydrogenation on Metal Catalyst Surfaces in Non-oxidative Environment: Design of Bimetallic Alloys"
+      same  venue: stored "Topics in Catalysis" | Crossref "Topics in Catalysis"
+      same  volume: stored "(in details: 61, 1820-1831)" | Crossref "61"
+      DIFF  issue: stored null | Crossref "18-19"
+      same  pages: stored "(in details: 61, 1820-1831)" | Crossref "1820-1831"
+      same  year: stored 2018 | Crossref 2018
+      same  authors: stored "Tuhin S. Khan, Fatima Jalid, M. Ali Haider" | Crossref "Tuhin S. Khan, Fatima Jalid, M. Ali Haider"
+
+DOI   10.1016/j.jcat.2017.07.018  (2017 Journal of Catalysis: Understanding trends in hydrodeoxygenation reactivity of met)
+      Crossref years: issued 2017, print 2017, online -
+      same  title: stored "Understanding trends in hydrodeoxygenation reactivity of metal and bimetallic alloy catalysts from ethanol reaction on stepped surface" | Crossref "Understanding trends in hydrodeoxygenation reactivity of metal and bimetallic alloy catalysts from ethanol reaction on stepped surface"
+      same  venue: stored "Journal of Catalysis" | Crossref "Journal of Catalysis"
+      same  volume: stored "(in details: 353, 265-273)" | Crossref "353"
+      same  pages: stored "(in details: 353, 265-273)" | Crossref "265-273"
+      same  year: stored 2017 | Crossref 2017
+      DIFF  authors: stored "Fatima Jalid, Tuhin S. Khan, Fasil Q. Mir, M. Ali Haider" | Crossref "Fatima Jalid, Tuhin Suvra Khan, Fasil Qayoom Mir, M. Ali Haider"
+
+SKIP  2024 Hydrogen Energy Production, Storage and Utilization: Aqueous Phase Reforming of Biomass Derived Feedstocks - Towa (no DOI)
+
+SKIP  2024 Magnesium Alloys for Biomedical Applications: Advances and Challenges: Biological and Chemical Stability of Coatings (no DOI)
+
+SKIP  2024 Magnesium Alloys for Biomedical Applications: Advances and Challenges: Mechanical, chemical, fatigue, and biological compatible pro (no DOI)
+
+SKIP  2023 Indian Patent: Electrodialytic purification and recovery of fermentation de (no DOI)
