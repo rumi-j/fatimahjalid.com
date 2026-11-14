@@ -55,9 +55,9 @@ create gallery entries when a set of images is ready.
 
 ## Repository
 
-- GitHub: <https://github.com/rumi-j/fatimahjalid.com> (private, account `rumi-j`)
+- GitHub: <https://github.com/rumi-j/fatimahjalid.com> (public since 14 November 2026, account `rumi-j`)
 - Default branch: `main`
-- Pushes go over HTTPS via the `gh` CLI.
+- Fatima's MacBook pushes over HTTPS via the `gh` CLI; the Mac mini pushes over SSH.
 
 ## Hosting and deployment (live since 10 October 2026)
 
@@ -77,3 +77,5 @@ To publish a content change: edit the relevant file in `src/data/`, run
 `npm run check && npm run build` locally, commit, and `git push origin main`.
 
 The site intentionally launches without visitor analytics.
+
+© Fatima Jalid. All rights reserved.

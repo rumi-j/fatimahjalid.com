@@ -10,7 +10,7 @@ coding assistant.
 ## Live site and accounts
 
 - Production: <https://fatimahjalid.com> (Netlify project `timely-phoenix-a25d4c`)
-- Source: <https://github.com/rumi-j/fatimahjalid.com> (private, branch `main`)
+- Source: <https://github.com/rumi-j/fatimahjalid.com> (public since 14 November 2026, branch `main`)
 - Domain registrar: Netlify (Name.com), renews 10 October 2027
 
 ## Public deployment resources

@@ -4,7 +4,7 @@ This file is the single source of instructions for any coding agent working in t
 
 ## What this is
 
-Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Dr. Fatima Jalid (Chemical Engineering, NIT Srinagar). Live at https://fatimahjalid.com since 10 Oct 2026; Netlify auto-deploys every push to `main` via `netlify.toml`. No test suite beyond the browser check in `scripts/site-check.mjs`, no analytics, no server runtime.
+Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Fatima Jalid (Chemical Engineering, NIT Srinagar). Live at https://fatimahjalid.com since 10 Oct 2026; Netlify auto-deploys every push to `main` via `netlify.toml`. No test suite beyond the browser check in `scripts/site-check.mjs`, no analytics, no server runtime.
 
 ## Commands
 
@@ -21,6 +21,12 @@ Pre-push verification is `npm run check && npm run build`, then confirm the seve
 ## Privacy rule (hard)
 
 `private/source-documents/` holds the CV and original source PDFs. It is gitignored and has never been committed. Never copy anything from it into `public/`, `src/`, or `dist/`, never link to it, and never quote CV contents into committed files beyond what is already in `src/data/`.
+
+The repository is public (since 14 Nov 2026). Anyone can read every committed file and every commit message, and they stay in the history after deletion. So:
+
+- Unpublished research data, draft specs and plans, and external reviews stay out of git. Keep them under `private/` (gitignored). A planning file that must sit elsewhere goes in this computer's `.git/info/exclude`; confirm with `git check-ignore -v <file>`.
+- Never commit tokens, keys, passwords or `.env` files. `.env*` is gitignored.
+- Before every commit, read `git status` and the staged diff, and keep personal details (phone numbers, private email addresses, home locations) out of files and commit messages.
 
 ## Architecture
 
@@ -46,13 +52,13 @@ Earlier Editorial, Mihrab, and Modern theme skins plus the Theme/Font switchers 
 
 ## Deployment
 
-The site is live. Netlify project `timely-phoenix-a25d4c` (free plan) builds `main` with `netlify.toml` (build `npm run build`, publish `dist/`, 301 from `www` to apex); a push to `main` is the deploy and takes about 25 s. `fatimahjalid.com` was bought through Netlify (Netlify DNS, Let's Encrypt HTTPS, renews 10 Oct 2027). `astro.config.mjs` sets `site: "https://fatimahjalid.com"`, which drives canonical URLs and the sitemap. `docs/DEPLOYMENT_CHECKLIST.md` has the post-deploy checks and launch record; `docs/RESOURCE_MANIFEST.md` lists which public assets exist and which external links are intentionally not bundled.
+The site is live. Netlify project `timely-phoenix-a25d4c` (free plan) builds `main` with `netlify.toml` (build `npm run build`, publish `dist/`, 301 from `www` to apex); a push to `main` is the deploy and takes about 25 s. The free plan is credit-based: 300 credits per billing cycle and 15 per production deploy, so about 20 deploys; when the credits run out, Netlify pauses the site until the next cycle. Batch commits into one push per piece of work. `fatimahjalid.com` was bought through Netlify (Netlify DNS, Let's Encrypt HTTPS, renews 10 Oct 2027). `astro.config.mjs` sets `site: "https://fatimahjalid.com"`, which drives canonical URLs and the sitemap. `docs/DEPLOYMENT_CHECKLIST.md` has the post-deploy checks and launch record; `docs/RESOURCE_MANIFEST.md` lists which public assets exist and which external links are intentionally not bundled.
 
 When link-checking: RSC and Wiley DOI pages return 403 to non-browser clients and LinkedIn returns 429. These are bot blocks, not broken links.
 
 ## Git and GitHub
 
-- Repository: https://github.com/rumi-j/fatimahjalid.com (private; owner account `rumi-j`; default branch `main`). GitHub account `Zulqar-sentinel` is a collaborator with write access (added 13 Nov 2026).
+- Repository: https://github.com/rumi-j/fatimahjalid.com (public since 14 Nov 2026; owner account `rumi-j`; default branch `main`). GitHub account `Zulqar-sentinel` is a collaborator with write access (added 13 Nov 2026). It was made public because Netlify's free plan builds commits from only one contributor on a private repository. No licence is granted: all rights reserved.
 - The site is worked on from two computers. Each keeps its own git identity in the repo's local config (`git config user.name` / `user.email`), so commit authorship shows who made each change. Do not change another computer's identity.
 
 | Computer | Folder | Push access | Commit identity |

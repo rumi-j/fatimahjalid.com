@@ -11,7 +11,7 @@ Open this folder as the project root:
 An Astro static website live at <https://fatimahjalid.com>, hosted on Netlify
 and deployed automatically from `main` on GitHub
 (<https://github.com/rumi-j/fatimahjalid.com>). The site is a multi-page
-academic and personal portfolio for Dr. Fatima Jalid.
+academic and personal portfolio for Fatima Jalid.
 
 ## Current architecture
 
@@ -51,8 +51,9 @@ repository.
 
 ## Repository
 
-GitHub remote `origin`: `https://github.com/rumi-j/fatimahjalid.com` (private, default
-branch `main`, GitHub account `rumi-j`, HTTPS auth through the `gh` CLI).
+GitHub remote `origin`: `https://github.com/rumi-j/fatimahjalid.com` (public since
+14 November 2026, default branch `main`, GitHub account `rumi-j`). Fatima's MacBook
+pushes over HTTPS through the `gh` CLI; the Mac mini pushes over SSH.
 
 ## Deployment notes
 

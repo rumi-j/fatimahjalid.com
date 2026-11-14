@@ -6,7 +6,8 @@ launch steps are kept at the end for reference.
 
 ## How deploys work now
 
-- GitHub repository: <https://github.com/rumi-j/fatimahjalid.com> (private).
+- GitHub repository: <https://github.com/rumi-j/fatimahjalid.com> (public since
+  14 November 2026).
 - Netlify project `timely-phoenix-a25d4c` builds from `main` using
   `netlify.toml` (`npm run build`, publish `dist/`).
 - Pushing to `main` is the deploy. A build takes roughly 25 seconds.

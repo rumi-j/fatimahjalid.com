@@ -3,4 +3,6 @@ dist/
 .astro/
 .DS_Store
 private/
+reviews/
+.env*
 .claude/settings.local.json
