@@ -19,6 +19,7 @@
     "@fontsource-variable/dm-sans": "^5.2.8",
     "@fontsource/dm-serif-display": "^5.2.8",
     "@fontsource/noto-nastaliq-urdu": "^5.2.8",
+    "playwright-core": "^1.65.0",
     "typescript": "^5.9.3"
   }
 }

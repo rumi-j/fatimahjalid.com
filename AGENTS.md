@@ -4,7 +4,7 @@ This file is the single source of instructions for any coding agent working in t
 
 ## What this is
 
-Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Dr. Fatima Jalid (Chemical Engineering, NIT Srinagar). Live at https://fatimahjalid.com since 10 Oct 2026; Netlify auto-deploys every push to `main` via `netlify.toml`. No tests, no analytics, no server runtime.
+Astro 6 static site for `fatimahjalid.com`, the academic and personal portfolio of Dr. Fatima Jalid (Chemical Engineering, NIT Srinagar). Live at https://fatimahjalid.com since 10 Oct 2026; Netlify auto-deploys every push to `main` via `netlify.toml`. No test suite beyond the browser check in `scripts/site-check.mjs`, no analytics, no server runtime.
 
 ## Commands
 
@@ -13,9 +13,10 @@ npm run dev      # dev server on http://localhost:4322 (launch.json name: astro-
 npm run check    # astro check — TypeScript + template diagnostics; run before build
 npm run build    # static output to dist/ (also generates sitemap-index.xml)
 npm run preview  # serve dist/ on :4322
+node scripts/site-check.mjs http://localhost:4322 <out-folder>  # browser checks against a running dev or preview server; writes site-check-report.txt, exits 1 on any failure
 ```
 
-Pre-push verification is `npm run check && npm run build`, then confirm the seven routes render: `/`, `/about`, `/research`, `/publications`, `/teaching`, `/personal`, `/404`.
+Pre-push verification is `npm run check && npm run build`, then confirm the seven routes render: `/`, `/about`, `/research`, `/publications`, `/teaching`, `/personal`, `/404`. With the dev server running, also run `scripts/site-check.mjs` and read the report. It drives the installed Google Chrome through `playwright-core` (a devDependency that downloads no browser), so Chrome must be installed; it has been run on the Mac mini only. Later work packages add their checks to this script rather than writing new ones.
 
 ## Privacy rule (hard)
 
