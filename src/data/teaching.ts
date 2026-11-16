@@ -1,3 +1,7 @@
+import creIIAutumn2025 from "../assets/teaching/class-cre-ii-autumn-2025.jpg";
+import creIIAutumn2026 from "../assets/teaching/class-cre-ii-autumn-2026.jpg";
+import creEtMscps from "../assets/teaching/class-cre-et-mscps-2024-2026.jpg";
+
 export const courses = [
   { title: "Chemical Reaction Engineering", terms: ["Autumn 2024", "Autumn 2025"] },
   {
@@ -12,6 +16,30 @@ export const courses = [
   { title: "Computer Simulation Laboratory", terms: ["Autumn 2025"] },
   { title: "Chemical Technology", terms: ["Autumn 2018"] },
   { title: "Modelling and Simulation for Chemical Process Systems", terms: ["Spring 2026"] },
+];
+
+// Newest first; the first photo is shown full width on the teaching page.
+// Source images are cropped to 16:9 with location metadata stripped.
+export const classPhotos = [
+  {
+    image: creIIAutumn2026,
+    classes: [{ course: "Chemical Reaction Engineering II", term: "Autumn 2026" }],
+    alt: "The Chemical Reaction Engineering II class of Autumn 2026 seated on the campus amphitheatre steps, with Fatima Jalid on a bench in front.",
+  },
+  {
+    image: creEtMscps,
+    classes: [
+      { course: "Chemical Reaction Engineering", term: "Autumn 2024" },
+      { course: "Energy Technology", term: "Spring 2025" },
+      { course: "Modelling and Simulation for Chemical Process Systems", term: "Spring 2026" },
+    ],
+    alt: "Students from Chemical Reaction Engineering, Energy Technology, and Modelling and Simulation for Chemical Process Systems on the campus amphitheatre steps in summer, with Fatima Jalid on a bench in front.",
+  },
+  {
+    image: creIIAutumn2025,
+    classes: [{ course: "Chemical Reaction Engineering II", term: "Autumn 2025" }],
+    alt: "The Chemical Reaction Engineering II class of Autumn 2025 in winter clothes on the campus amphitheatre steps, with Fatima Jalid on a bench in front.",
+  },
 ];
 
 export const courseProjects = [

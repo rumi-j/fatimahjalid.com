@@ -1,8 +1,9 @@
 ---
+import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import ArchFrame from "../components/girih/ArchFrame.astro";
-import { courseProjects, courses } from "../data/teaching";
+import { classPhotos, courseProjects, courses } from "../data/teaching";
 import { group } from "../data/group";
 import { site } from "../data/site";
 
@@ -36,6 +37,38 @@ const courseFillers = (courseColumns - (courses.length % courseColumns)) % cours
       ))}
       {Array.from({ length: courseFillers }).map(() => (
         <article class="course-card course-card-empty" aria-hidden="true"></article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell class-photos-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Class photographs</p>
+      <h2>With my classes.</h2>
+    </div>
+    <div class="class-photo-grid" data-reveal-stagger>
+      {classPhotos.map((photo, i) => (
+        <figure class:list={["class-photo", { "class-photo-lead": i === 0 }]}>
+          <Picture
+            src={photo.image}
+            formats={["avif", "webp"]}
+            widths={[480, 800, 1200, 1800, 2400]}
+            sizes={i === 0
+              ? "(max-width: 1311px) 90vw, 1160px"
+              : "(max-width: 760px) 90vw, (max-width: 1311px) 45vw, 560px"}
+            alt={photo.alt}
+          />
+          <figcaption>
+            <ul>
+              {photo.classes.map((item) => (
+                <li>
+                  <span class="class-photo-course">{item.course}</span>
+                  <span class="class-photo-term">{item.term}</span>
+                </li>
+              ))}
+            </ul>
+          </figcaption>
+        </figure>
       ))}
     </div>
   </section>

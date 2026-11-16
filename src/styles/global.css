@@ -218,6 +218,17 @@ em { color: var(--rust); font-style: italic; }
 .course-card:hover { background: var(--vellum); }
 .course-card h3 { margin-bottom: 18px; font-family: var(--serif); font-size: 1.35rem; }
 .course-card p { margin-bottom: 0; color: var(--ink-soft); font-family: var(--mono); font-size: .72rem; letter-spacing: .04em; }
+.class-photos-section { padding-bottom: 110px; }
+.class-photo-grid { display: grid; grid-template-columns: repeat(2,1fr); align-items: start; gap: 24px; }
+.class-photo { margin: 0; padding: 10px; border: 1px solid var(--line-gold); background: var(--vellum); box-shadow: inset 0 0 0 4px rgba(184,137,46,.08); }
+.class-photo-lead { grid-column: 1 / -1; }
+.class-photo img { display: block; width: 100%; height: auto; filter: saturate(.9); }
+.class-photo figcaption { padding: 14px 6px 4px; }
+.class-photo ul { margin: 0; padding: 0; list-style: none; }
+.class-photo li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 16px; }
+.class-photo li + li { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line); }
+.class-photo-course { font-family: var(--serif); font-size: 1.15rem; }
+.class-photo-term { color: var(--ink-soft); font-family: var(--mono); font-size: var(--text-label); letter-spacing: .08em; text-transform: uppercase; }
 .project-work { padding-block: 100px; background: var(--sage); }
 .course-project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
 .course-project-grid article { min-height: 240px; padding: 25px; border: 1px solid var(--line); background: rgba(255,255,255,.38); }
@@ -408,6 +419,9 @@ em { color: var(--rust); font-style: italic; }
   .pub-year { position: static; font-size: 1.35rem; }
   .research-tile .micro-network { max-width: 200px; }
   .courses-section { padding-bottom: 80px; }
+  .class-photos-section { padding-bottom: 80px; }
+  .class-photo-grid { grid-template-columns: 1fr; gap: 18px; }
+  .class-photo { padding: 7px; }
   .project-work { padding-block: 75px; }
   .group-section { padding-top: 75px; }
   .group-grid { grid-template-columns: 1fr; gap: 40px; }
